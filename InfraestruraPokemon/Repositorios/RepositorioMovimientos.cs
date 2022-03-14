@@ -25,10 +25,7 @@ namespace InfraestructuraPokemon.Repositorios
         }
         public IEnumerable<DTOMovimiento> LeerMovimientos()
         {
-            var a = new DTOMovimiento
-            {
-              
-            };
+           
             return contextoPokemon.Movimientos.ToList().Select(x=>ConbertirADto(x));    
            
         }
