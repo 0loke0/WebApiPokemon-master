@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b58b3f79-e6f9-4e40-8ee2-9cbae7397073": {
+      "ProjectGuid": "b58b3f79-e6f9-4e40-8ee2-9cbae7397073",
+      "DisplayName": "InfraestructuraPokemon",
+      "ColorIndex": 0
+    },
+    "b81e3e86-1ed1-4dd8-85ba-25219c216c9b": {
+      "ProjectGuid": "b81e3e86-1ed1-4dd8-85ba-25219c216c9b",
+      "DisplayName": "ServiciosPokemon",
+      "ColorIndex": 1
+    },
+    "2966ba8e-b5e5-49c6-8b2f-50021761cbba": {
+      "ProjectGuid": "2966ba8e-b5e5-49c6-8b2f-50021761cbba",
+      "DisplayName": "ApiPokemon",
+      "ColorIndex": 2
+    },
+    "caa31b9f-4639-45b8-a814-04943c637bde": {
+      "ProjectGuid": "caa31b9f-4639-45b8-a814-04943c637bde",
+      "DisplayName": "DominioPokemon",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    },
+    "24a8bcc5-099e-401f-a9b1-09af3d5e4569": {
+      "ProjectGuid": "24a8bcc5-099e-401f-a9b1-09af3d5e4569",
+      "DisplayName": "DTOsPokemon",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}
