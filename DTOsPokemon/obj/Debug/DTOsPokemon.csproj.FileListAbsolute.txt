@@ -12,3 +12,12 @@ C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-mas
 C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-master\DTOsPokemon\bin\Debug\Newtonsoft.Json.xml
 C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.AssemblyReference.cache
 C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.CopyComplete
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\bin\Debug\DTOsPokemon.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\bin\Debug\DTOsPokemon.pdb
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\bin\Debug\Newtonsoft.Json.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\bin\Debug\Newtonsoft.Json.xml
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.AssemblyReference.cache
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.CoreCompileInputs.cache
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.CopyComplete
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.pdb
