@@ -15,6 +15,10 @@ namespace InfraestructuraPokemon.Repositorios
     {        
 
         ContextoPokemon contextoPokemon;
+        public RepositorioMovimientos(ContextoPokemon contextoPokemon )
+        {
+            this.contextoPokemon = contextoPokemon;
+        }
 
         public DTOMovimiento ConbertirADto(Movimientos movimiento) {
             return new DTOMovimiento {

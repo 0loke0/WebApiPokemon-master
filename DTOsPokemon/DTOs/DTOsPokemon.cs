@@ -1,4 +1,5 @@
 ﻿using DTOsPokemon.DTOs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace DTOsPokemon.DTOS
 
     public class DTOStats
     {
-        public int IdPokemon { get; set; }
+        public int? IdPokemon { get; set; }
         public int Ataque { get; set; }
         public int Defensa { get; set; }
         public int EspecialAtaque { get; set; }
@@ -47,10 +48,12 @@ namespace DTOsPokemon.DTOS
         public int IdPokemon { get; set; }
         public int IdTipo { get; set; }
     }
-
+    
     public class DTOMovimiento
     {
-        public int IdMovimiento { get; set; }
+       
+        public int? IdTemporalPokemon { get; set; }
+        public int? IdMovimiento { get; set; }
         public string NombreMovimiento { get; set; }
         public int Valor { get; set; }
     }
@@ -71,39 +74,15 @@ namespace DTOsPokemon.DTOS
     }
 
 
-    public class DTOMovimientoBD {
-        public string NombreMovimiento { get;set; }
-        public int Valor { get; set;}
-    }
-    public class DTOTiposBD
-    {
-        public int IdTipo { get; set; }
-        public string NombreTipo { get; set; }
-    }
+   
 
-    public class DTOStatsdBD
-    {        
-        public int Ataque { get; set; }
-        public int Defensa { get; set; }
-        public int EspecialAtaque { get; set; }
-        public int EspecialDefensa { get; set; }
-        public int Velocidad { get; set; }
-        public int Vida { get; set; }
-    }
-
-    public class DTOImagenBD
-    {
-        public string Nombre { get; set; }
-        public string ArchivoImagen { get; set; }
-        public string RutaImagen { get; set; }
-    }
-
+    
     public class DTODetallePokemon { 
         public DTOPokemon Pokemon { get; set; }        
-        public List<DTOMovimientoBD> Movimientos { get; set; }
-        public List<DTOTiposBD> Tipos { get; set; }
-        public DTOStatsdBD Stats { get; set; }
-        public DTOImagenBD Imagen { get; set; }
+        public List<DTOMovimiento> Movimientos { get; set; }
+        public List<DTOTipo> Tipos { get; set; }
+        public DTOStats Stats { get; set; }
+        public DTOImagen Imagen { get; set; }
 
     }
 

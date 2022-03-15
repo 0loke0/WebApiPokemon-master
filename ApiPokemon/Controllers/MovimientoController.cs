@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DTOsPokemon.DTOS;
+using ServiciosPokemon;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,5 +11,17 @@ namespace ApiPokemon.Controllers
 {
     public class MovimientoController : ApiController
     {
+        IServicioMovimientos servicioMovimientos;
+        public MovimientoController(IServicioMovimientos servicioMovimientos)
+        {
+            this.servicioMovimientos = servicioMovimientos;
+        }
+
+        [HttpGet]
+        public IHttpActionResult ListaMovimientos()
+        {
+            return Ok(servicioMovimientos.LeerMovimientos());
+        }
+
     }
 }

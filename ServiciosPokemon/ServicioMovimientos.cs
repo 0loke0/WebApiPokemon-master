@@ -11,7 +11,7 @@ namespace ServiciosPokemon
     public interface IServicioMovimientos {
         IEnumerable<DTOMovimiento> LeerMovimientos();
     }
-    internal class ServicioMovimientos : IServicioMovimientos
+    public class ServicioMovimientos : IServicioMovimientos
     {
         IRepositorioMovimientos repositorioMovimientos;
         public ServicioMovimientos(IRepositorioMovimientos repositorioMovimientos)

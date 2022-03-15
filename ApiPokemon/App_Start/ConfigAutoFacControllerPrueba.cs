@@ -20,6 +20,7 @@ namespace ApiPokemon
             
             builder.RegisterType<ServicioPokemon>().As<IServicioPokemon>();
             builder.RegisterType<ServicioTipos>().As<IServicioTipos>();
+            builder.RegisterType<ServicioMovimientos>().As<IServicioMovimientos>();
             //builder.RegisterType<ServicioStats>().As<IServicioStats>();
             //builder.RegisterType<ServicioDirectorioTipo>().As<IServicioDirectorioTipo>();
             //builder.RegisterType<ServicioImagenes>().As<IServicioImagenes>();
@@ -27,6 +28,7 @@ namespace ApiPokemon
             //Repositorio
             builder.RegisterType<RepositorioPokemon>().As<IRepositorioPokemon>();
             builder.RegisterType<RepositorioTipos>().As<IRepositorioTipo>();
+            builder.RegisterType<RepositorioMovimientos>().As<IRepositorioMovimientos>();
             builder.RegisterType<RepositorioStats>().As<IRepositorioStats>();
             builder.RegisterType<RepositorioDirectorioTipos>().As<IRepositorioDirectorioTipos>();
             builder.RegisterType<RepositorioDirectorioMovimientos>().As<IRepositorioDirectorioMovimientos>();
