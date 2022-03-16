@@ -50,27 +50,9 @@ namespace DominioPokemon
             if (Nombre.Length >= 100)
             {
                 throw new Exception($"El nombre del Pokémon ingresado supera la longitud de 100 letras");
-            }
-        //    repositorioStats.GuardarStatsAleatorio(idPokemonGuardado);
+            }        
         }
-        //public void validacionNombreDtoPokemon(string NombrePokemon) {
-          
-        //}
-        //public void validacionIdDtoPokemon(DTOPokemon pokemon) {
-        //    if (pokemon.Id < 0) {
-        //        throw new Exception($"El Id del Pokémon no puede ser negativo: {pokemon.Id}");
-        //    }
-        //}
-        //public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon) {
-        //    validacionNombreDtoPokemon(nuevoPokemon.NombrePokemon);
-        //    var idPokemonGuardado = repositorioPokemon.GuardarPokemon(nuevoPokemon);
-
-
-        //    var nuevaRelacionPokemonTipo = new DTODirectorioTipos();
-        //    nuevaRelacionPokemonTipo.IdPokemon = idPokemonGuardado;
-        //    nuevaRelacionPokemonTipo.IdTipo = nuevoPokemon.IdTipo;
-        //    repositorioDirectorioTipos.GuardarRelacion(nuevaRelacionPokemonTipo);
-        //}
+       
 
 
 

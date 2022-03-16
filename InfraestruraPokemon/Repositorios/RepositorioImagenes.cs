@@ -32,12 +32,17 @@ namespace InfraestructuraPokemon.Repositorios
         //TODO: Se realizan dos acciones es necesario modificarlo ok finalizado pendiente revicion
 
         private byte[] ConvertirDeBase64Aimagen(string base64String) {
-            return Convert.FromBase64String(base64String);
+            int inicioBase64 = base64String.IndexOf(",", 0)+1;
+            string imagenBase64 =base64String.Substring(inicioBase64);
+           
+            return Convert.FromBase64String(imagenBase64);
         }
         private string GuardarImagenEnRuta(byte[] imagenBytes,string nombre)
         {
+            
+
             string directorioDeGuardado = @"C:\nueva";
-            string ruta = directorioDeGuardado + @"\" + nombre + @".png";
+            string ruta = directorioDeGuardado + @"\" + nombre;
             
             if (!Directory.Exists(directorioDeGuardado))
             {
@@ -49,7 +54,6 @@ namespace InfraestructuraPokemon.Repositorios
                 imageFile.Write(imagenBytes, 0, imagenBytes.Length);
                 imageFile.Flush();
             }
-
             return ruta;
         }
 

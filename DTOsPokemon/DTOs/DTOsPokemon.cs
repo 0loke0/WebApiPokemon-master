@@ -22,6 +22,7 @@ namespace DTOsPokemon.DTOS
     }
     public class DTOTipo
     {
+        public int? IdTemporalPokemon { get; set; }
         public int IdTipo { get; set; }
         public string NombreTipo { get; set; }
     }
