@@ -8,3 +8,9 @@ C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-mas
 C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.csproj.CoreCompileInputs.cache
 C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.dll
 C:\Users\danfe\OneDrive\Documentos\GitHub\WebApiPokemon-master\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.pdb
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\Utilidades\bin\Debug\Utilidades.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\Utilidades\bin\Debug\Utilidades.pdb
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.csproj.AssemblyReference.cache
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.csproj.CoreCompileInputs.cache
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.pdb

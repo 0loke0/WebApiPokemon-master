@@ -15,17 +15,28 @@ namespace DominioPokemon
         public List<int> IdsTipo { get; set; }
         public DominioDirectorioTipos(List<int> idsTipos)
         {
-            Validar(idsTipos);
+            Validar();
             this.IdsTipo = idsTipos;    
 
         }
 
-        private void Validar(List<int> idsTipos)        {           
 
-            if (idsTipos.Count() > 2)
+       
+        private void Validar()        {           
+
+            if (IdsTipo.Count() > 2)
             {
-                throw new Exception("Un pokemon solo puede tener maximo 2 tipos");
+                throw new Exception("Un Pokémon solo puede tener máximo 2 tipos");
             }
+
+            if (IdsTipo.Count() == 2)
+            {
+                if (IdsTipo[0] == IdsTipo[1])
+                {
+                    throw new Exception("Se ha seleccionado dos veces el mismo tipo ");
+                }
+            }
+
         }
         //public void GuardarNuevaRelacionDirectorioTipos(DTODirectorioTipos relacionPokemonTipo)
         //{

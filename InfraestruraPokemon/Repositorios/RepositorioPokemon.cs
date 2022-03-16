@@ -18,7 +18,7 @@ namespace InfraestructuraPokemon.Repositorios
         IEnumerable<DTOPokemon> LeerPokemon();
         IEnumerable<DTOPokemon> BuscarPokemones(string nombrePokemon);
         DTOPokemon BuscarPokemonEspecifico(string nombrePokemon);
-        int GuardarPokemon(Pokemon nuevoPokemon);
+        int GuardarPokemon(Pokemon nuevoPokemon, DTOImagen imagenes);
         void EliminarPokemon(int idPokemon);
         void ActualizarPokemon(DTOPokemon pokemon);
 
@@ -37,10 +37,19 @@ namespace InfraestructuraPokemon.Repositorios
            Id = dataPokemonConsultado.IdPokemon,
            Nombre = dataPokemonConsultado.Nombre
        };
-        private Pokemones ConvertirDominioAPersistencia(Pokemon pokemon)
+        private Pokemones ConvertirDominiosAPersistencia(Pokemon pokemon, DTOImagen imagenes)
       => new Pokemones
       {
-          Nombre = pokemon.Nombre
+          Nombre = pokemon.Nombre,
+          Ataque = pokemon.Ataque,
+          Defensa = pokemon.Defensa,
+          EspecialAtaque = pokemon.EspecialAtaque,
+          EspecialDefensa = pokemon.EspecialDefensa,
+          Velocidad =pokemon.Velocidad,
+          Vida = pokemon.Vida,
+          NombreImagen = imagenes.Nombre,
+          ArchivoImagen = imagenes.ArchivoImagen,
+          RutaImagen = imagenes.RutaImagen
       };
 
 
@@ -56,9 +65,9 @@ namespace InfraestructuraPokemon.Repositorios
             return dataPokemonConsultado;
         }
 
-        public int GuardarPokemon(Pokemon nuevoPokemon)
+        public int GuardarPokemon(Pokemon nuevoPokemon, DTOImagen imagenes)
         {
-            var modeloPokemon = ConvertirDominioAPersistencia(nuevoPokemon);
+            var modeloPokemon = ConvertirDominiosAPersistencia(nuevoPokemon, imagenes);
             contextoPokemon.Pokemones.Add(modeloPokemon);
             contextoPokemon.SaveChanges();
             return modeloPokemon.IdPokemon;
@@ -176,24 +185,19 @@ namespace InfraestructuraPokemon.Repositorios
                                 ).Where(dt => dt.IdTemporalPokemon == x.IdPokemon)
                                 .ToList(),
 
-                        Imagen = contextoPokemon.Imagenes
-                            .Where(ima => ima.IdPokemon == x.IdPokemon)
-                            .Select(ima=>new DTOImagen 
-                                            { ArchivoImagen = ima.ArchivoImagen,
-                                            Nombre = ima.Nombre,
-                                            RutaImagen =ima.RutaImagen
-                                            })
-                            .FirstOrDefault(),
+                        Imagen = new DTOImagen 
+                                            { ArchivoImagen = x.ArchivoImagen,
+                                            Nombre = x.Nombre,
+                                            RutaImagen =x.RutaImagen
+                                            },
 
-                        Stats = contextoPokemon.Stats
-                            .Where(st=>st.IdPokemon==x.IdPokemon)
-                            .Select(st=>new DTOStats
-                                        {Ataque=st.Ataque,
-                                        Defensa=st.Defensa,
-                                        Velocidad=st.Velocidad,
-                                        Vida=st.Vida,
-                                        EspecialAtaque=st.EspecialAtaque
-                                        ,EspecialDefensa=st.EspecialDefensa}).FirstOrDefault()      
+                        Stats = new DTOStats
+                                        {Ataque=x.Ataque,
+                                        Defensa=x.Defensa,
+                                        Velocidad=x.Velocidad,
+                                        Vida=x.Vida,
+                                        EspecialAtaque=x.EspecialAtaque
+                                        ,EspecialDefensa=x.EspecialDefensa}     
                         }).ToList();
 
 

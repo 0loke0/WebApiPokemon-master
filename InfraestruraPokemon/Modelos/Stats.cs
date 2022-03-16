@@ -27,7 +27,7 @@ namespace InfraestructuraPokemon.Modelos
                 .Property(x => x.IdPokemon)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
-            entidad.HasRequired(x => x.Pokemones).WithRequiredDependent(x => x.Stats).WillCascadeOnDelete(false);
+            //entidad.HasRequired(x => x.Pokemones).WithRequiredDependent(x => x.Stats).WillCascadeOnDelete(false);
         }
     }
 }

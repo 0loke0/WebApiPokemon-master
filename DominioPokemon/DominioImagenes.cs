@@ -11,18 +11,23 @@ namespace DominioPokemon
 
     public class DominioImagenes
     {
-        public string nombre { get; set; }
-        public string archivoImagen { get; set; }
+        public string Nombre { get; set; }
+        public string ArchivoImagen { get; set; }
         public DominioImagenes(string nombre,string archivoImagen )
-        {
-            this.nombre = nombre;
-            this.archivoImagen = archivoImagen;
+        {            
+            this.Nombre = nombre;
+            this.ArchivoImagen = archivoImagen;
+            Validar();
         }
 
 
         private void Validar() {
-            if (string.IsNullOrEmpty(nombre)) {
-                throw new Exception("El nombre para la imagen no no es valido");
+            if (string.IsNullOrEmpty(Nombre)) {
+                throw new Exception("El nombre para la imagen puede estar vació");
+            }
+            if (Nombre.Length >= 100)
+            {
+                throw new Exception($"El nombre de la imagen supera 100 letras");
             }
         }
     }

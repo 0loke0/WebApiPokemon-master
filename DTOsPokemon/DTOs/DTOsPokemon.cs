@@ -15,10 +15,22 @@ namespace DTOsPokemon.DTOS
         public int IdTipo { get; set; }
         public string NombreTipo { get; set; }
     }
-    public class DTOPokemon
+
+    
+        public class DTOPokemon
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public int Ataque { get; set; }
+        public int Defensa { get; set; }
+        public int EspecialAtaque { get; set; }
+        public int EspecialDefensa { get; set; }
+        public int Velocidad { get; set; }
+        public int Vida { get; set; }
+        public string NombreImagen { get; set; }
+        public string ArchivoImagen { get; set; }
+        public string RutaImagen { get; set; }
+
     }
     public class DTOTipo
     {

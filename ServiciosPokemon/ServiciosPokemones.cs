@@ -1,4 +1,5 @@
 ﻿using DTOsPokemon.DTOS;
+using DTOsPokemon.DTOs;
 using InfraestructuraPokemon.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -43,17 +44,18 @@ namespace ServiciosPokemon
         }
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
         {
-            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon);
+            //Pokemon hace referencia al domonio
+            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon);//todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(nuevoPokemon.IdsTipo);
-            DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(nuevoPokemon.IdsMovimiento);//Anemico
+            DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(nuevoPokemon.IdsMovimiento);
             DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre,nuevoPokemon.Imagen.ArchivoImagen);
 
-            var idPokemonGuardado = repositorioPokemon.GuardarPokemon(pokemon);
+            DTOImagen img= repositorioImagenes.ConvertirDominioADtoGuardandoImagenEnLocal(imagenes);
+            var idPokemonGuardado = repositorioPokemon.GuardarPokemon(pokemon, img);
 
-            repositorioStats.GuardarStat(pokemon, idPokemonGuardado);
             repositorioDirectorioTipos.GuardarRelacion(directorioTipos.IdsTipo, idPokemonGuardado);
             repositorioDirectorioMovimientos.GuardarRelacion(directorioMovimiento.IdsMovimiento, idPokemonGuardado);
-            repositorioImagenes.GuardarImagen(imagenes,idPokemonGuardado);
+          
         }
 
            

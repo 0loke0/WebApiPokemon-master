@@ -16,7 +16,7 @@ namespace InfraestructuraPokemon.Repositorios
 
    public interface IRepositorioImagenes {
         //void AgregarImagen(DTOImagen DtoTipo);
-        void GuardarImagen(DominioImagenes imagenes,int idPokemonGuardado);
+        DTOImagen ConvertirDominioADtoGuardandoImagenEnLocal(DominioImagenes imagenes);
 
     }
     public class RepositorioImagenes : IRepositorioImagenes
@@ -37,7 +37,7 @@ namespace InfraestructuraPokemon.Repositorios
            
             return Convert.FromBase64String(imagenBase64);
         }
-        private string GuardarImagenEnRuta(byte[] imagenBytes,string nombre)
+        private string GuardarImagenEnLocal(byte[] imagenBytes,string nombre)
         {
             
 
@@ -57,22 +57,21 @@ namespace InfraestructuraPokemon.Repositorios
             return ruta;
         }
 
-        private Imagenes ConvertirDominioAPersistencia(DominioImagenes imagenes, int idPokemonGuardado) {
-
-            return new Imagenes
-            {
-                IdPokemon = idPokemonGuardado,
-                Nombre = imagenes.nombre,
-                ArchivoImagen = imagenes.archivoImagen,
-                RutaImagen = GuardarImagenEnRuta(ConvertirDeBase64Aimagen(imagenes.archivoImagen),imagenes.nombre),                
-            };
-        }
+       
         
-
-        public void GuardarImagen(DominioImagenes imagenes, int idPokemonGuardado)
+        //NO me agrada las acciones internas del nombre guarda ruta o solo hace una convercion
+        public DTOImagen ConvertirDominioADtoGuardandoImagenEnLocal(DominioImagenes imagenes)
         {
-            contextoPokemon.Imagenes.Add(ConvertirDominioAPersistencia(imagenes, idPokemonGuardado));
-            contextoPokemon.SaveChanges();
+            return new DTOImagen
+            {
+                Nombre = imagenes.Nombre,
+                ArchivoImagen = imagenes.ArchivoImagen,
+                RutaImagen = GuardarImagenEnLocal(ConvertirDeBase64Aimagen(imagenes.ArchivoImagen), imagenes.Nombre)
+            };
+
+           
+           
+          
         }
     }
 }

@@ -13,10 +13,21 @@ namespace InfraestructuraPokemon.Modelos
 
         public int IdPokemon{get; set;}
         public string Nombre { get; set; }
+        public int Ataque { get; set; }
+        public int Defensa { get; set; }
+        public int EspecialAtaque { get; set; }
+        public int EspecialDefensa { get; set; }
+        public int Velocidad { get; set; }
+        public int Vida { get; set; }
+        public string NombreImagen { get; set; }
+        public string ArchivoImagen { get; set; }
+        public string RutaImagen { get; set; }
+        
+
         public virtual ICollection<DirectorioMovimientos> DirectorioMovimientos { get; set; }
         public virtual ICollection<DirectorioTipos> DirectorioTipos { get; set; }
-        public virtual ICollection<Imagenes> Imagenes { get; set; }
-        public virtual Stats Stats  { get; set; }
+        //public virtual ICollection<Imagenes> Imagenes { get; set; }
+        //public virtual Stats Stats  { get; set; }
 
 
         public static void ConfigurarModelo(DbModelBuilder modelo) {
@@ -28,7 +39,7 @@ namespace InfraestructuraPokemon.Modelos
                 .HasMaxLength(100)
                 .IsRequired();
 
-            entidad.HasMany(x => x.Imagenes).WithRequired().HasForeignKey(x => x.IdPokemon).WillCascadeOnDelete(false);            
+            //entidad.HasMany(x => x.Imagenes).WithRequired().HasForeignKey(x => x.IdPokemon).WillCascadeOnDelete(false);            
             
 
         }
