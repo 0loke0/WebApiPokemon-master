@@ -25,3 +25,10 @@ C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DominioPokemon\obj\Debug\Do
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DominioPokemon\obj\Debug\DominioPokemon.csproj.CopyComplete
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DominioPokemon\obj\Debug\DominioPokemon.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\DominioPokemon\obj\Debug\DominioPokemon.pdb
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DominioPokemon\bin\Debug\DominioPokemon.dll
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DominioPokemon\bin\Debug\DominioPokemon.pdb
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DominioPokemon\bin\Debug\DTOsPokemon.dll
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DominioPokemon\bin\Debug\DTOsPokemon.pdb
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DominioPokemon\obj\Debug\DominioPokemon.csprojResolveAssemblyReference.cache
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DominioPokemon\obj\Debug\DominioPokemon.dll
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DominioPokemon\obj\Debug\DominioPokemon.pdb
