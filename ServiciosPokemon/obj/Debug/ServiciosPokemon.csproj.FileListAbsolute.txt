@@ -105,3 +105,5 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosP
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\obj\Debug\ServiciosPokemon.csprojResolveAssemblyReference.cache
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\obj\Debug\ServiciosPokemon.dll
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\obj\Debug\ServiciosPokemon.pdb
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\bin\Debug\Utilidades.dll
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\bin\Debug\Utilidades.pdb

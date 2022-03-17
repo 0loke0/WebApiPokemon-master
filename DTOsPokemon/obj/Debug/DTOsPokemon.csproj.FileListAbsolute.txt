@@ -25,6 +25,6 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemo
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\bin\Debug\DTOsPokemon.pdb
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\bin\Debug\Newtonsoft.Json.dll
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\bin\Debug\Newtonsoft.Json.xml
-C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csprojResolveAssemblyReference.cache
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.dll
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.pdb
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csprojResolveAssemblyReference.cache

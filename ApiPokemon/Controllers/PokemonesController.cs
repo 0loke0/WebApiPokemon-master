@@ -14,9 +14,9 @@ namespace ApiPokemon.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult ObtenerPokemones()
+        public IHttpActionResult ObtenerPokemones(DTOPaginacion paginacion)
         {
-            return Ok(servicioPokemon.ListarPokemones());
+            return Ok(servicioPokemon.ListarPokemones(paginacion));
         }
        
 

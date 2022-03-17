@@ -206,3 +206,5 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\obj\Debug\ApiPokemon.csprojResolveAssemblyReference.cache
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\obj\Debug\ApiPokemon.dll
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\obj\Debug\ApiPokemon.pdb
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Utilidades.dll
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Utilidades.pdb

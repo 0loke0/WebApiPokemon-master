@@ -80,6 +80,10 @@
       <Project>{b58b3f79-e6f9-4e40-8ee2-9cbae7397073}</Project>
       <Name>InfraestructuraPokemon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{146c7d2d-0953-4078-8baa-2242a1bc7fbb}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

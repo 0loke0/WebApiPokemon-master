@@ -15,13 +15,12 @@ namespace DominioPokemon
         public List<int> IdsTipo { get; set; }
         public DominioDirectorioTipos(List<int> idsTipos)
         {
+            this.IdsTipo = idsTipos;
             Validar();
-            this.IdsTipo = idsTipos;    
-
         }
 
 
-       
+
         private void Validar()        {           
 
             if (IdsTipo.Count() > 2)

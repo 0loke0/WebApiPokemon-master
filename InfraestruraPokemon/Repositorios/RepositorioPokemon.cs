@@ -14,11 +14,11 @@ namespace InfraestructuraPokemon.Repositorios
 {
     public interface IRepositorioPokemon
     {
-        IEnumerable<DTODetallePokemon> RecogerPokemon();
+        IEnumerable<DTODetallePokemon> RecogerPokemon(DTOPaginacion paginacion);
         IEnumerable<DTOPokemon> LeerPokemon();
         IEnumerable<DTOPokemon> BuscarPokemones(string nombrePokemon);
         DTOPokemon BuscarPokemonEspecifico(string nombrePokemon);
-        int GuardarPokemon(Pokemon nuevoPokemon, DTOImagen imagenes);
+        int GuardarPokemon(Pokemon nuevoPokemon, DTOIngresoImagen imagenes, string rutaGuardadoImagen);
         void EliminarPokemon(int idPokemon);
         void ActualizarPokemon(DTOPokemon pokemon);
 
@@ -37,7 +37,7 @@ namespace InfraestructuraPokemon.Repositorios
            Id = dataPokemonConsultado.IdPokemon,
            Nombre = dataPokemonConsultado.Nombre
        };
-        private Pokemones ConvertirDominiosAPersistencia(Pokemon pokemon, DTOImagen imagenes)
+        private Pokemones ConvertirDominiosAPersistencia(Pokemon pokemon, DTOIngresoImagen imagenes, string rutaGuardadoImagen)
       => new Pokemones
       {
           Nombre = pokemon.Nombre,
@@ -49,7 +49,7 @@ namespace InfraestructuraPokemon.Repositorios
           Vida = pokemon.Vida,
           NombreImagen = imagenes.Nombre,
           ArchivoImagen = imagenes.ArchivoImagen,
-          RutaImagen = imagenes.RutaImagen
+          RutaImagen = rutaGuardadoImagen
       };
 
 
@@ -65,9 +65,9 @@ namespace InfraestructuraPokemon.Repositorios
             return dataPokemonConsultado;
         }
 
-        public int GuardarPokemon(Pokemon nuevoPokemon, DTOImagen imagenes)
+        public int GuardarPokemon(Pokemon nuevoPokemon, DTOIngresoImagen imagenes, string rutaGuardadoImagen)
         {
-            var modeloPokemon = ConvertirDominiosAPersistencia(nuevoPokemon, imagenes);
+            var modeloPokemon = ConvertirDominiosAPersistencia(nuevoPokemon, imagenes,  rutaGuardadoImagen);
             contextoPokemon.Pokemones.Add(modeloPokemon);
             contextoPokemon.SaveChanges();
             return modeloPokemon.IdPokemon;
@@ -138,20 +138,29 @@ namespace InfraestructuraPokemon.Repositorios
         }
 
         //todo: dejar mas clean la funcion recogerPokemon (muchas acciones dentro de una misma funcion)
-        public IEnumerable<DTODetallePokemon> RecogerPokemon()
+        public IEnumerable<DTODetallePokemon> RecogerPokemon(DTOPaginacion paginacion)
         {
-            
+
             //List<DTODetallePokemon> listaPokemones = new List<DTODetallePokemon>();
+            int ubicacionPagina = paginacion.Indice * paginacion.CantidadRegistros;
 
 
 
+            return (from x in contextoPokemon.Pokemones.OrderBy(O=>O.IdPokemon).Skip(ubicacionPagina).Take(paginacion.CantidadRegistros)
 
-            return (from x in contextoPokemon.Pokemones
-                        //where id == x.IdPokemon
                     select new DTODetallePokemon
                     {
-
-                        Pokemon = new DTOPokemon { Id = x.IdPokemon, Nombre = x.Nombre },
+                        Id=x.IdPokemon,
+                        Nombre = x.Nombre,
+                        Ataque = x.Ataque,
+                        Defensa = x.Defensa,
+                        EspecialAtaque = x.EspecialAtaque,
+                        EspecialDefensa = x.EspecialDefensa,
+                        Velocidad = x.Velocidad,
+                        Vida = x.Vida,
+                        NombreImagen = x.NombreImagen,
+                        ArchivoImagen = x.ArchivoImagen,
+                        RutaImagen = x.RutaImagen,
                         Movimientos = contextoPokemon.DirectorioMovimientos
                                 .Join(
                                  contextoPokemon.Movimientos,
@@ -183,21 +192,9 @@ namespace InfraestructuraPokemon.Repositorios
                                     NombreTipo = tip.NombreTipo
                                 }
                                 ).Where(dt => dt.IdTemporalPokemon == x.IdPokemon)
-                                .ToList(),
+                                .ToList()
 
-                        Imagen = new DTOImagen 
-                                            { ArchivoImagen = x.ArchivoImagen,
-                                            Nombre = x.Nombre,
-                                            RutaImagen =x.RutaImagen
-                                            },
-
-                        Stats = new DTOStats
-                                        {Ataque=x.Ataque,
-                                        Defensa=x.Defensa,
-                                        Velocidad=x.Velocidad,
-                                        Vida=x.Vida,
-                                        EspecialAtaque=x.EspecialAtaque
-                                        ,EspecialDefensa=x.EspecialDefensa}     
+                       
                         }).ToList();
 
 

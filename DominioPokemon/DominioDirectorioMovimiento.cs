@@ -12,8 +12,8 @@ namespace DominioPokemon
         public List<int> IdsMovimiento { get; set; }
         public DominioDirectorioMovimiento(List<int> idsMovimientos)
         {
-                validar();
-                this.IdsMovimiento = idsMovimientos;
+            this.IdsMovimiento = idsMovimientos;
+            validar();             
         }
 
        

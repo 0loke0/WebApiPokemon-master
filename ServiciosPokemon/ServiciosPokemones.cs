@@ -8,11 +8,13 @@ using InfraestructuraPokemon.Modelos;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Utilidades.Utilidades;
 
 namespace ServiciosPokemon
 {
     public interface IServicioPokemon {
-        IEnumerable<DTODetallePokemon> ListarPokemones();
+        IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion);
         void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon);
     }
     public class ServicioPokemon : IServicioPokemon
@@ -38,20 +40,46 @@ namespace ServiciosPokemon
             this.repositorioImagenes = repositorioImagenes;
         }
 
-        public IEnumerable<DTODetallePokemon> ListarPokemones()
+        private string GuardarImagenEnLocal(byte[] imagenBytes, string nombre)
         {
-            return repositorioPokemon.RecogerPokemon();
+            string directorioDeGuardado = @"C:\nueva";
+            string ruta = directorioDeGuardado + @"\" + nombre;
+
+            if (!Directory.Exists(directorioDeGuardado))
+            {
+                Directory.CreateDirectory(directorioDeGuardado);
+            }
+            using (var imageFile = new FileStream(ruta, FileMode.Create))
+            {
+                imageFile.Write(imagenBytes, 0, imagenBytes.Length);
+                imageFile.Flush();
+            }
+            return ruta;
         }
+
+        public IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion)
+        {
+            return repositorioPokemon.RecogerPokemon(paginacion);
+        }
+
+       
+
+
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
         {
+            UtilidadesImagenes utilidades = new UtilidadesImagenes();
             //Pokemon hace referencia al domonio
             Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon);//todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(nuevoPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(nuevoPokemon.IdsMovimiento);
             DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre,nuevoPokemon.Imagen.ArchivoImagen);
 
-            DTOImagen img= repositorioImagenes.ConvertirDominioADtoGuardandoImagenEnLocal(imagenes);
-            var idPokemonGuardado = repositorioPokemon.GuardarPokemon(pokemon, img);
+            //convercion y guardado de imagen
+            byte[] imagenConvertida= utilidades.ConvertirDeBase64Aimagen(nuevoPokemon.Imagen.ArchivoImagen);
+            string rutaGuardadoImagen = GuardarImagenEnLocal(imagenConvertida,nuevoPokemon.Imagen.Nombre);
+
+            //DTOImagen img= repositorioImagenes.ConvertirDominioADtoGuardandoImagenEnLocal(imagenes);
+            var idPokemonGuardado = repositorioPokemon.GuardarPokemon(pokemon, nuevoPokemon.Imagen, rutaGuardadoImagen);
 
             repositorioDirectorioTipos.GuardarRelacion(directorioTipos.IdsTipo, idPokemonGuardado);
             repositorioDirectorioMovimientos.GuardarRelacion(directorioMovimiento.IdsMovimiento, idPokemonGuardado);

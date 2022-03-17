@@ -90,13 +90,29 @@ namespace DTOsPokemon.DTOS
    
 
     
-    public class DTODetallePokemon { 
-        public DTOPokemon Pokemon { get; set; }        
+    public class DTODetallePokemon {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public int Ataque { get; set; }
+        public int Defensa { get; set; }
+        public int EspecialAtaque { get; set; }
+        public int EspecialDefensa { get; set; }
+        public int Velocidad { get; set; }
+        public int Vida { get; set; }
+        public string NombreImagen { get; set; }
+        public string ArchivoImagen { get; set; }
+        public string RutaImagen { get; set; }
+              
         public List<DTOMovimiento> Movimientos { get; set; }
-        public List<DTOTipo> Tipos { get; set; }
-        public DTOStats Stats { get; set; }
-        public DTOImagen Imagen { get; set; }
+        public List<DTOTipo> Tipos { get; set; }      
+      
 
+    }
+
+
+    public class DTOPaginacion {
+        public int Indice { get; set; }
+        public int CantidadRegistros { get; set; }
     }
 
 
