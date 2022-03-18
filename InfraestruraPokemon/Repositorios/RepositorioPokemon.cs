@@ -146,7 +146,7 @@ namespace InfraestructuraPokemon.Repositorios
 
 
 
-            return (from x in contextoPokemon.Pokemones.OrderBy(O=>O.IdPokemon).Skip(ubicacionPagina).Take(paginacion.CantidadRegistros)
+            return (from x in contextoPokemon.Pokemones
 
                     select new DTODetallePokemon
                     {
@@ -195,7 +195,7 @@ namespace InfraestructuraPokemon.Repositorios
                                 .ToList()
 
                        
-                        }).ToList();
+                        }).OrderBy(ft=>ft.Id).Skip(ubicacionPagina).Take(paginacion.CantidadRegistros).ToList();
 
 
 

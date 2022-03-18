@@ -67,7 +67,7 @@ namespace ServiciosPokemon
 
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
         {
-            UtilidadesImagenes utilidades = new UtilidadesImagenes();
+            
             //Pokemon hace referencia al domonio
             Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon);//todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(nuevoPokemon.IdsTipo);
@@ -75,7 +75,7 @@ namespace ServiciosPokemon
             DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre,nuevoPokemon.Imagen.ArchivoImagen);
 
             //convercion y guardado de imagen
-            byte[] imagenConvertida= utilidades.ConvertirDeBase64Aimagen(nuevoPokemon.Imagen.ArchivoImagen);
+            byte[] imagenConvertida= UtilidadesImagenes.ConvertirDeBase64Aimagen(nuevoPokemon.Imagen.ArchivoImagen);
             string rutaGuardadoImagen = GuardarImagenEnLocal(imagenConvertida,nuevoPokemon.Imagen.Nombre);
 
             //DTOImagen img= repositorioImagenes.ConvertirDominioADtoGuardandoImagenEnLocal(imagenes);
