@@ -13,7 +13,7 @@ namespace ApiPokemon.Controllers
             this.servicioPokemon = servicioPokemon;
         }
 
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult ObtenerPokemones(DTOPaginacion paginacion)
         {
             return Ok(servicioPokemon.ListarPokemones(paginacion));
