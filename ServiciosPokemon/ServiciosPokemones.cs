@@ -16,6 +16,10 @@ namespace ServiciosPokemon
     public interface IServicioPokemon {
         IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion);
         void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon);
+
+        void EliminarPokemon(int idPokemon);
+
+        int ObtenerCantidadPokemones();
     }
     public class ServicioPokemon : IServicioPokemon
     {
@@ -60,6 +64,7 @@ namespace ServiciosPokemon
         public IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion)
         {
             return repositorioPokemon.RecogerPokemon(paginacion);
+
         }
 
        
@@ -86,8 +91,14 @@ namespace ServiciosPokemon
           
         }
 
-           
+        public void EliminarPokemon(int idPokemon)
+        {
+            repositorioPokemon.EliminarPokemon(idPokemon);
+        }
 
-       
+        public int ObtenerCantidadPokemones()
+        {
+            return repositorioPokemon.ObtenerCantidadPokemones();
+        }
     }
 }

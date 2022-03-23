@@ -21,7 +21,8 @@ namespace InfraestructuraPokemon.Repositorios
         int GuardarPokemon(Pokemon nuevoPokemon, DTOIngresoImagen imagenes, string rutaGuardadoImagen);
         void EliminarPokemon(int idPokemon);
         void ActualizarPokemon(DTOPokemon pokemon);
-
+        int ObtenerCantidadPokemones();
+        
     }
     public class RepositorioPokemon : IRepositorioPokemon
     {
@@ -201,6 +202,9 @@ namespace InfraestructuraPokemon.Repositorios
 
         }
 
-
+        public int ObtenerCantidadPokemones()
+        {
+            return contextoPokemon.Pokemones.Count();
+        }
     }
 }
