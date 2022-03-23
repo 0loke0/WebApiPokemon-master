@@ -102,7 +102,7 @@ namespace DTOsPokemon.DTOS
         public string NombreImagen { get; set; }
         public string ArchivoImagen { get; set; }
         public string RutaImagen { get; set; }
-              
+        public string Rareza { get; set; }
         public List<DTOMovimiento> Movimientos { get; set; }
         public List<DTOTipo> Tipos { get; set; }      
       

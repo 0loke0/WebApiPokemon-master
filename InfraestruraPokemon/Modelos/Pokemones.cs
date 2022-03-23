@@ -19,6 +19,7 @@ namespace InfraestructuraPokemon.Modelos
         public int EspecialDefensa { get; set; }
         public int Velocidad { get; set; }
         public int Vida { get; set; }
+        public string Rareza { get; set; }
         public string NombreImagen { get; set; }
         public string ArchivoImagen { get; set; }
         public string RutaImagen { get; set; }

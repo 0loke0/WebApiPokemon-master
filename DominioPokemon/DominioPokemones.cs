@@ -19,6 +19,7 @@ namespace DominioPokemon
         public int EspecialDefensa { get; set; }
         public int Velocidad { get; set; }
         public int Vida { get; set; }
+        public string Rareza { get; set; }
 
         //public string Tipo { get; set; }
         public Pokemon(string nombre)
@@ -26,11 +27,12 @@ namespace DominioPokemon
             this.Nombre = nombre;
             Validar();
             GenerarStats();
-           
+            GenerarRareza();
         }
 
 
-        private void GenerarStats() {
+        private void GenerarStats()
+        {
             Random ram = new Random();
 
             Ataque = ram.Next(1, 100);
@@ -38,11 +40,58 @@ namespace DominioPokemon
             EspecialAtaque = ram.Next(1, 100);
             EspecialDefensa = ram.Next(1, 100);
             Velocidad = ram.Next(1, 100);
-            Vida = ram.Next(1, 100);           
+            Vida = ram.Next(1, 100);
+
+        }
+        private double logartimoDeterminarRareza(double x) {
+            return 300 * Math.Log10(x);
+         }
+    private void GenerarRareza()
+        {
+            int sumatoriaCaracteristicas = Ataque + Defensa + EspecialAtaque + EspecialDefensa + Velocidad + Vida;
+            
+           
+           
+           
+            
+            if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 6) ))
+            {
+                Rareza = "Comun";
+                return ;
+            }
+            if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 4.8)))
+            {
+                Rareza = "Poco comun";
+                return;
+            }
+            if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 3.6)))
+            {
+                Rareza = "Rara";
+                return;
+            }           
+            if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 2.4) ))
+            {
+                Rareza = "Epica";
+                return;
+            }
+            if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 1.2) ))
+            {
+                Rareza = "Epica Singular";
+                return;
+            }
+            if (sumatoriaCaracteristicas > logartimoDeterminarRareza((100 / 1.2) ))
+            {
+                Rareza = "Legendaria";
+                return;
+            }
+
+
+
 
         }
 
-        private void Validar() {
+        private void Validar()
+        {
             if (string.IsNullOrEmpty(Nombre))
             {
                 throw new Exception($"El nombre del Pokémon es requerido");
@@ -50,9 +99,9 @@ namespace DominioPokemon
             if (Nombre.Length >= 100)
             {
                 throw new Exception($"El nombre del Pokémon ingresado supera la longitud de 100 letras");
-            }        
+            }
         }
-       
+
 
 
 

@@ -50,7 +50,8 @@ namespace InfraestructuraPokemon.Repositorios
           Vida = pokemon.Vida,
           NombreImagen = imagenes.Nombre,
           ArchivoImagen = imagenes.ArchivoImagen,
-          RutaImagen = rutaGuardadoImagen
+          RutaImagen = rutaGuardadoImagen,
+          Rareza = pokemon.Rareza
       };
 
 
@@ -162,6 +163,7 @@ namespace InfraestructuraPokemon.Repositorios
                         NombreImagen = x.NombreImagen,
                         ArchivoImagen = x.ArchivoImagen,
                         RutaImagen = x.RutaImagen,
+                        Rareza = x.Rareza,
                         Movimientos = contextoPokemon.DirectorioMovimientos
                                 .Join(
                                  contextoPokemon.Movimientos,
