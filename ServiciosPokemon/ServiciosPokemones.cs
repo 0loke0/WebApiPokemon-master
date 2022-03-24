@@ -65,9 +65,7 @@ namespace ServiciosPokemon
         {
             return repositorioPokemon.RecogerPokemon(paginacion);
 
-        }
-
-       
+        }      
 
 
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
