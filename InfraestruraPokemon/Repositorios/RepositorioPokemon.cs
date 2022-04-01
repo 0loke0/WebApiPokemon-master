@@ -22,7 +22,9 @@ namespace InfraestructuraPokemon.Repositorios
         void EliminarPokemon(int idPokemon);
         void ActualizarPokemon(DTOPokemon pokemon);
         int ObtenerCantidadPokemones();
-        
+        void ModificacionNombrePokemon (int id, string nombre);
+
+       
     }
     public class RepositorioPokemon : IRepositorioPokemon
     {
@@ -207,6 +209,19 @@ namespace InfraestructuraPokemon.Repositorios
         public int ObtenerCantidadPokemones()
         {
             return contextoPokemon.Pokemones.Count();
+        }
+
+        public void ModificacionNombrePokemon(int id, string nombre)
+        {
+            var pokemon = (from x in contextoPokemon.Pokemones
+                         where x.IdPokemon == id
+                         select x).FirstOrDefault();
+            if (pokemon == null) {
+                throw new Exception($"No se encontró información del pokémon que se desea modificar ");
+            }
+            pokemon.Nombre = nombre;
+
+            contextoPokemon.SaveChanges();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace InfraestructuraPokemon.Repositorios
     public interface IRepositorioDirectorioMovimientos
     {
         void GuardarRelacion(List<int> directorioHabilidades, int idPokemonGuardado);
+        void ModificacionDirectorioMovimientos(int id, List<int> idsMovimientos);
     }
     public class RepositorioDirectorioMovimientos : IRepositorioDirectorioMovimientos
     {
@@ -31,6 +32,24 @@ namespace InfraestructuraPokemon.Repositorios
             };
         }
 
+        private void EliminarRelacionMovimientos(int id)
+        {
+            var info = contextoPokemon.DirectorioMovimientos.FirstOrDefault(x => x.IdPokemon == id);
+            try
+            {
+                if (info == null)
+                {
+                    throw new Exception($"No se ha encontrado ninguna relacion de los movimientos asociados con el pokemon ");
+                }
+                contextoPokemon.DirectorioMovimientos.Remove(info);
+                contextoPokemon.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Se ha generado un error al eliminar la relacion de los movimientos asociados con el pokemon : {e}");
+            }
+        }
+
 
         public void GuardarRelacion(List<int> directorioHabilidades, int idPokemonGuardado)
         {
@@ -48,6 +67,31 @@ namespace InfraestructuraPokemon.Repositorios
                 }
             }
             
+        }
+
+        public void ModificacionDirectorioMovimientos(int id, List<int> idsMovimientos)
+        {
+            var relacionMovimientos = (from x in contextoPokemon.DirectorioMovimientos
+                                 where x.IdPokemon == id
+                                 select x).ToList();
+
+
+            //Todo:Necesario mejorar esta relacion 
+            if (relacionMovimientos.Count > idsMovimientos.Count || relacionMovimientos.Count < idsMovimientos.Count)
+            {
+                EliminarRelacionMovimientos(id);
+                GuardarRelacion(idsMovimientos, id);
+            }
+
+            if (relacionMovimientos.Count == idsMovimientos.Count)
+            {
+                for (int i = 0; i < idsMovimientos.Count; i++)
+                {
+                    relacionMovimientos[i].IdMovimiento = idsMovimientos[i];
+                }
+            }
+
+            contextoPokemon.SaveChanges();
         }
     }
 }

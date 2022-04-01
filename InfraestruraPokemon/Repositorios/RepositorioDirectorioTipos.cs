@@ -12,6 +12,7 @@ namespace InfraestructuraPokemon.Repositorios
     public interface IRepositorioDirectorioTipos {
         void GuardarRelacion(List<int> directorioTipos, int idPokemonGuardado);
         IEnumerable<DTORelacionPokemonTipo> BuscarRelacionPokemonTipo(int idpokemon);
+        void ModificacionDirectorioTipos(int id, List<int> IdsTipo);
     }
     public class RepositorioDirectorioTipos: IRepositorioDirectorioTipos
     {
@@ -28,6 +29,23 @@ namespace InfraestructuraPokemon.Repositorios
                 IdTipo = idTipo,
                 IdPokemon = idPokemonGuardado
             };
+        }
+        private void  EliminarRelacionTipos(int id)
+        {
+            var info = contextoPokemon.DirectorioTipos.FirstOrDefault(x => x.IdPokemon == id);
+            try
+            {
+                if (info == null)
+                {
+                    throw new Exception($"No se ha encontrado ninguna relacion de los tipos asociados con el pokemon");
+                }
+                contextoPokemon.DirectorioTipos.Remove(info);
+                contextoPokemon.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Se ha generado un error al eliminar la relacion de los tipos asociados con el pokemon : {e}");
+            }
         }
         
 
@@ -60,6 +78,28 @@ namespace InfraestructuraPokemon.Repositorios
             return data;
         }
 
-        
+        public void ModificacionDirectorioTipos(int id, List<int> IdsTipo)
+        {
+            var relacionTipos = (from x in contextoPokemon.DirectorioTipos
+                           where x.IdPokemon == id
+                           select x).ToList();
+
+
+            //Todo:Necesario mejorar esta relacion 
+            if (relacionTipos.Count > IdsTipo.Count|| relacionTipos.Count < IdsTipo.Count) {
+                EliminarRelacionTipos(id);
+                GuardarRelacion(IdsTipo, id);
+            }
+           
+            if (relacionTipos.Count == IdsTipo.Count)
+            {
+                for (int i = 0; i < IdsTipo.Count; i++)
+                {
+                    relacionTipos[i].IdTipo = IdsTipo[i];
+                }
+            }
+
+            contextoPokemon.SaveChanges();
+        }
     }
 }

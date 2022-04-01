@@ -86,10 +86,17 @@ namespace DTOsPokemon.DTOS
 
     }
 
+    public class DTOModificacionAPokemon
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public List<int> IdsTipo { get; set; }        
+        public List<int> IdsMovimiento { get; set; }
 
-   
+    }
 
-    
+
+
     public class DTODetallePokemon {
         public int Id { get; set; }
         public string Nombre { get; set; }

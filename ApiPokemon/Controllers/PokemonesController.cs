@@ -38,5 +38,12 @@ namespace ApiPokemon.Controllers
         public IHttpActionResult ObtenerCantidadRegistrosPokemon() { 
         return Ok( servicioPokemon.ObtenerCantidadPokemones());
         }
+
+        [HttpPost]
+        public IHttpActionResult ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
+        {
+            servicioPokemon.ModificarPokemon(ModificacionAPokemon);
+            return Ok($"Se guardo de forma correcta el pokemon {ModificacionAPokemon.Nombre}");
+        }
     }
 }
