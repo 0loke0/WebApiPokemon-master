@@ -107,7 +107,7 @@ namespace ServiciosPokemon
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(ModificacionAPokemon.IdsMovimiento);
             repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id,ModificacionAPokemon.Nombre);
             repositorioDirectorioTipos.ModificacionDirectorioTipos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsTipo);
-            repositorioDirectorioTipos.ModificacionDirectorioMovimientos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsMovimiento);
+            //repositorioDirectorioTipos.ModificacionDirectorioMovimientos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsMovimiento);
 
 
         }
