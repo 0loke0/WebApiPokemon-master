@@ -26,21 +26,18 @@ namespace ServiciosPokemon
     public class ServicioPokemon : IServicioPokemon
     {
         public IRepositorioPokemon repositorioPokemon;
-        public IRepositorioStats repositorioStats;
         public IRepositorioDirectorioTipos repositorioDirectorioTipos;
         public IRepositorioDirectorioMovimientos repositorioDirectorioMovimientos;
         public IRepositorioImagenes repositorioImagenes;
 
         public ServicioPokemon(
             IRepositorioPokemon repositorioPokemon,
-            IRepositorioStats repositorioStats,
             IRepositorioDirectorioTipos repositorioDirectorioTipos,
             IRepositorioDirectorioMovimientos repositorioDirectorioMovimientos,
             IRepositorioImagenes repositorioImagenes
             )
         {
             this.repositorioPokemon = repositorioPokemon;
-            this.repositorioStats = repositorioStats;
             this.repositorioDirectorioTipos = repositorioDirectorioTipos;
             this.repositorioDirectorioMovimientos = repositorioDirectorioMovimientos;
             this.repositorioImagenes = repositorioImagenes;

@@ -140,3 +140,7 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\Infraestru
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestructuraPokemon.csprojResolveAssemblyReference.cache
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestruraPokemon.dll
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestruraPokemon.pdb
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestruraPokemon.Migrations.PokeMigracion.resources
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestructuraPokemon.csproj.GenerateResource.cache
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestruraPokemon.Migrations.PokeMigracion2.resources
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestruraPokemon.Migrations.ImplementacionSeed.resources

@@ -118,7 +118,6 @@ C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Autofac.Inte
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\DominioPokemon.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\DTOsPokemon.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.dll
-C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.SqlServer.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\InfraestruraPokemon.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Newtonsoft.Json.dll
@@ -139,7 +138,6 @@ C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Autofac.xml
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Autofac.Integration.WebApi.pdb
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Autofac.Integration.WebApi.xml
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.xml
-C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.SqlServer.xml
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\System.Net.Http.Formatting.xml
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\System.Web.Http.xml
@@ -210,3 +208,5 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Utilidades.pdb
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Utilidades.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Utilidades.pdb
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.SqlServer.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.SqlServer.xml

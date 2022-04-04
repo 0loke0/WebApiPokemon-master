@@ -21,7 +21,6 @@ namespace InfraestructuraPokemon
         public DbSet<Imagenes> Imagenes { get; set; }
         public DbSet<Movimientos> Movimientos { get; set; }
         public DbSet<Pokemones> Pokemones { get; set; }
-        public DbSet<Stats> Stats { get; set; }
         public DbSet<Tipos> Tipos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -33,7 +32,7 @@ namespace InfraestructuraPokemon
             Modelos.DirectorioMovimientos.ConfigurarModelo(modelBuilder);
             Modelos.DirectorioTipos.ConfigurarModelo(modelBuilder);
             Modelos.Movimientos.ConfigurarModelo(modelBuilder);
-            Modelos.Stats.ConfigurarModelo(modelBuilder);
+
             Modelos.Tipos.ConfigurarModelo(modelBuilder);
         }
     }

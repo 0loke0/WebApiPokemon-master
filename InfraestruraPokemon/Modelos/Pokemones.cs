@@ -23,12 +23,13 @@ namespace InfraestructuraPokemon.Modelos
         public string NombreImagen { get; set; }
         public string ArchivoImagen { get; set; }
         public string RutaImagen { get; set; }
-        
+        public string Detalle { get; set; }
+
+
 
         public virtual ICollection<DirectorioMovimientos> DirectorioMovimientos { get; set; }
         public virtual ICollection<DirectorioTipos> DirectorioTipos { get; set; }
-        //public virtual ICollection<Imagenes> Imagenes { get; set; }
-        //public virtual Stats Stats  { get; set; }
+    
 
 
         public static void ConfigurarModelo(DbModelBuilder modelo) {
@@ -39,6 +40,7 @@ namespace InfraestructuraPokemon.Modelos
                 .IsUnicode(false)
                 .HasMaxLength(100)
                 .IsRequired();
+
 
             //entidad.HasMany(x => x.Imagenes).WithRequired().HasForeignKey(x => x.IdPokemon).WillCascadeOnDelete(false);            
             
