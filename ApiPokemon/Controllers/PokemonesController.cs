@@ -16,6 +16,7 @@ namespace ApiPokemon.Controllers
         [HttpPost]
         public IHttpActionResult ObtenerPokemones(DTOPaginacion paginacion)
         {
+         
             return Ok(servicioPokemon.ListarPokemones(paginacion));
         }
 
@@ -23,6 +24,7 @@ namespace ApiPokemon.Controllers
         [HttpPost]
         public IHttpActionResult GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
         {
+          
             servicioPokemon.GuardarNuevoPokemon(nuevoPokemon);
             return Ok($"Se guardo de forma correcta el pokemon {nuevoPokemon.NombrePokemon}");
         }
@@ -30,6 +32,7 @@ namespace ApiPokemon.Controllers
         [HttpDelete]
         public IHttpActionResult EliminarPokemon(int idPokemon)
         {
+          
             servicioPokemon.EliminarPokemon(idPokemon);
             return Ok($"Se Eliminio de forma correcta el pokemon con el identificador: {idPokemon}");
         }
@@ -42,6 +45,7 @@ namespace ApiPokemon.Controllers
         [HttpPost]
         public IHttpActionResult ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
         {
+            
             servicioPokemon.ModificarPokemon(ModificacionAPokemon);
             return Ok($"Se guardo de forma correcta el pokemon {ModificacionAPokemon.Nombre}");
         }
