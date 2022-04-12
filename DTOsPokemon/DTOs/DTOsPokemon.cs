@@ -83,6 +83,7 @@ namespace DTOsPokemon.DTOS
         public List<int> IdsTipo { get; set; }        //lista para el directorio
         public List<int> IdsMovimiento { get; set; }
         public DTOIngresoImagen Imagen { get; set; }
+        public string Detalle { get; set; }
 
     }
 
@@ -111,8 +112,9 @@ namespace DTOsPokemon.DTOS
         public string RutaImagen { get; set; }
         public string Rareza { get; set; }
         public List<DTOMovimiento> Movimientos { get; set; }
-        public List<DTOTipo> Tipos { get; set; }      
-      
+        public List<DTOTipo> Tipos { get; set; }
+        public string Detalle { get; set; }
+
 
     }
 

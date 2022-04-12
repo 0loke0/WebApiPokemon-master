@@ -15,6 +15,7 @@
 
         protected override void Seed(InfraestructuraPokemon.ContextoPokemon context)
         {
+            //TODO: ver nuevamente el funcionamieto de las Seeds
             //var contenedor = ConfigContenedorSeed.Configure();
             //SeedMovimientos seedMovimiento = new SeedMovimientos();
 

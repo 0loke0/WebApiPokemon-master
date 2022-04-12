@@ -71,7 +71,7 @@ namespace ServiciosPokemon
         {
             
             //Pokemon hace referencia al domonio
-            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon);//todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
+            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon,nuevoPokemon.Detalle);//todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(nuevoPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(nuevoPokemon.IdsMovimiento);
             DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre,nuevoPokemon.Imagen.ArchivoImagen);
