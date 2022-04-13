@@ -82,7 +82,7 @@ namespace DTOsPokemon.DTOS
         public string NombrePokemon { get; set; }
         public List<int> IdsTipo { get; set; }        //lista para el directorio
         public List<int> IdsMovimiento { get; set; }
-        public DTOIngresoImagen Imagen { get; set; }
+        public DTOIngresoImagen Imagen { get; set; }  
         public string Detalle { get; set; }
 
     }
