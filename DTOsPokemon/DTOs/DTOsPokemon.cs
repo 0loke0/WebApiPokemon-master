@@ -116,6 +116,8 @@ namespace DTOsPokemon.DTOS
 
     }
 
+    
+
 
     public class DTOPaginacion {
         public int Indice { get; set; }

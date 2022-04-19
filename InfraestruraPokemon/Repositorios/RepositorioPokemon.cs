@@ -9,6 +9,9 @@ using DTOsPokemon.DTOS;
 using InfraestructuraPokemon.Modelos;
 using DominioPokemon;
 using DTOsPokemon.DTOs;
+using System.Data.SqlClient;
+using System.Data;
+using Dapper;
 
 namespace InfraestructuraPokemon.Repositorios
 {
@@ -23,7 +26,7 @@ namespace InfraestructuraPokemon.Repositorios
         void ActualizarPokemon(DTOPokemon pokemon);
         int ObtenerCantidadPokemones();
         void ModificacionNombrePokemon (int id, string nombre);
-        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
+        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp();
 
 
 
@@ -207,11 +210,28 @@ namespace InfraestructuraPokemon.Repositorios
         }
 
 
-        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion)
+        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp()
         {
 
-            ContextoPokemon contextoPokemons = new ContextoPokemon ();
-            var test = contextoPokemons.GetSeccionPokemones();
+            ContextoPokemon contextoPokemons = new ContextoPokemon();
+            var inicio = new SqlParameter("@InicioBusqueda", 3107);
+            var final = new SqlParameter("@UltimoBusqueda", 3109);
+            //var test = contextoPokemons.Database.SqlQuery<T>("dbo.GetSeccionPokemones @InicioBusqueda, @UltimoBusqueda", inicio, final).ToList();
+
+            //using (var multi = conecction.QueryMultiple("dbo.GetSeccionPokemones @InicioBusqueda, @UltimoBusqueda", inicio, final))
+            //{
+            //    int countA = multi.Read<int>().Single();
+            //    int countB = multi.Read<int>().Single();
+            //}
+            string conn = "Data Source=LOKE;Initial Catalog=DbPokemones;User ID=UsuarioParaApi;Password=Contrasena12345;Trusted_Connection=False;MultipleActiveResultSets=true;";
+
+            SqlConnection connection = new SqlConnection(conn);
+
+            var procedure = "[GetSeccionPokemones]";
+            var values = new { InicioBusqueda = 3107, UltimoBusqueda = 3109 };
+            var results = connection.Query(procedure, values, commandType: CommandType.StoredProcedure).ToList();
+            var results2 = connection.Query(procedure, values, commandType: CommandType.StoredProcedure).ToList();
+            results.ForEach(r => Console.WriteLine($"{r.OrderID} {r.Subtotal}"));
             return null;
         }
             public int ObtenerCantidadPokemones()

@@ -18,7 +18,11 @@ namespace ApiPokemon.Controllers
         {         
             return Ok(servicioPokemon.ListarPokemones(paginacion));
         }
-
+        [HttpPost]
+        public IHttpActionResult ObtenerPokemonesSP()
+        {
+            return Ok(servicioPokemon.ListarPokemonesSP());
+        }
 
         [HttpPost]
         public IHttpActionResult GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)

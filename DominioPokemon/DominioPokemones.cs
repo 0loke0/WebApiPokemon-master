@@ -60,12 +60,12 @@ namespace DominioPokemon
 
             if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 6)))
             {
-                Rareza = "Comun";
+                Rareza = "Común";
                 return;
             }
             if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 4.8)))
             {
-                Rareza = "Poco comun";
+                Rareza = "Poco Común";
                 return;
             }
             if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 3.6)))
@@ -75,12 +75,12 @@ namespace DominioPokemon
             }
             if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 2.4)))
             {
-                Rareza = "Epica";
+                Rareza = "Épica";
                 return;
             }
             if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 1.2)))
             {
-                Rareza = "Epica Singular";
+                Rareza = "Épica Singular";
                 return;
             }
             if (sumatoriaCaracteristicas > logartimoDeterminarRareza((100 / 1.2)))

@@ -109,3 +109,5 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosP
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\bin\Debug\Utilidades.pdb
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\bin\Debug\Utilidades.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\bin\Debug\Utilidades.pdb
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\bin\Debug\Dapper.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ServiciosPokemon\bin\Debug\Dapper.xml

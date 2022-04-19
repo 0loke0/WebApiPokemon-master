@@ -15,6 +15,7 @@ namespace ServiciosPokemon
 {
     public interface IServicioPokemon {
         IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion);
+        IEnumerable<DTODetallePokemon> ListarPokemonesSP();
         void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon);
         void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);
        
@@ -64,7 +65,13 @@ namespace ServiciosPokemon
         {
             return repositorioPokemon.RecogerPokemon(paginacion);
 
-        }      
+        }
+
+        public IEnumerable<DTODetallePokemon> ListarPokemonesSP()
+        {
+            return repositorioPokemon.RecogerPokemonDesdeSp();
+
+        }
 
 
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
@@ -98,6 +105,8 @@ namespace ServiciosPokemon
             return repositorioPokemon.ObtenerCantidadPokemones();
         }
 
+
+
         public void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
         {
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(ModificacionAPokemon.IdsTipo);
@@ -108,5 +117,8 @@ namespace ServiciosPokemon
 
 
         }
+
+
+        
     }
 }

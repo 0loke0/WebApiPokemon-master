@@ -210,3 +210,5 @@ C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Utilidades.d
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Utilidades.pdb
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.SqlServer.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.SqlServer.xml
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Dapper.dll
+C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Dapper.xml
