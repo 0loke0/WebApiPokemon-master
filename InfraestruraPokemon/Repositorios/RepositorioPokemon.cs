@@ -23,8 +23,11 @@ namespace InfraestructuraPokemon.Repositorios
         void ActualizarPokemon(DTOPokemon pokemon);
         int ObtenerCantidadPokemones();
         void ModificacionNombrePokemon (int id, string nombre);
+        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
 
-       
+
+
+
     }
     public class RepositorioPokemon : IRepositorioPokemon
     {
@@ -145,11 +148,7 @@ namespace InfraestructuraPokemon.Repositorios
         //todo: dejar mas clean la funcion recogerPokemon (muchas acciones dentro de una misma funcion)
         public IEnumerable<DTODetallePokemon> RecogerPokemon(DTOPaginacion paginacion)
         {
-
-            //List<DTODetallePokemon> listaPokemones = new List<DTODetallePokemon>();
             int ubicacionPagina = paginacion.Indice * paginacion.CantidadRegistros;
-
-
 
             return (from x in contextoPokemon.Pokemones
 
@@ -164,7 +163,6 @@ namespace InfraestructuraPokemon.Repositorios
                         Velocidad = x.Velocidad,
                         Vida = x.Vida,
                         NombreImagen = x.NombreImagen,
-                        ArchivoImagen = x.ArchivoImagen,
                         RutaImagen = x.RutaImagen,
                         Rareza = x.Rareza,
                         Detalle=x.Detalle,
@@ -208,7 +206,15 @@ namespace InfraestructuraPokemon.Repositorios
 
         }
 
-        public int ObtenerCantidadPokemones()
+
+        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion)
+        {
+
+            ContextoPokemon contextoPokemons = new ContextoPokemon ();
+            var test = contextoPokemons.GetSeccionPokemones();
+            return null;
+        }
+            public int ObtenerCantidadPokemones()
         {
             return contextoPokemon.Pokemones.Count();
         }
@@ -222,7 +228,6 @@ namespace InfraestructuraPokemon.Repositorios
                 throw new Exception($"No se encontró información del pokémon que se desea modificar ");
             }
             pokemon.Nombre = nombre;
-
             contextoPokemon.SaveChanges();
         }
     }

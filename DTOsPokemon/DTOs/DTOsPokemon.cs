@@ -107,14 +107,12 @@ namespace DTOsPokemon.DTOS
         public int EspecialDefensa { get; set; }
         public int Velocidad { get; set; }
         public int Vida { get; set; }
-        public string NombreImagen { get; set; }
-        public string ArchivoImagen { get; set; }
+        public string NombreImagen { get; set; }      
         public string RutaImagen { get; set; }
         public string Rareza { get; set; }
         public List<DTOMovimiento> Movimientos { get; set; }
         public List<DTOTipo> Tipos { get; set; }
         public string Detalle { get; set; }
-
 
     }
 

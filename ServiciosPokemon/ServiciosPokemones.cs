@@ -45,7 +45,7 @@ namespace ServiciosPokemon
 
         private string GuardarImagenEnLocal(byte[] imagenBytes, string nombre)
         {
-            string directorioDeGuardado = @"C:\nueva";
+            string directorioDeGuardado = @"C:\Users\danfe\Documents\GitHub\consumoapi\src\ImagenesPokemon";
             string ruta = directorioDeGuardado + @"\" + nombre;
 
             if (!Directory.Exists(directorioDeGuardado))
