@@ -64,7 +64,7 @@ namespace DTOsPokemon.DTOS
     
     public class DTOMovimiento
     {
-       
+        //todo: quitar IdTemporalPokemon cuando la consulta en el repositorio pokemon por sp ya este terminada
         public int? IdTemporalPokemon { get; set; }
         public int? IdMovimiento { get; set; }
         public string NombreMovimiento { get; set; }
@@ -116,7 +116,37 @@ namespace DTOsPokemon.DTOS
 
     }
 
-    
+    public class DTOPokemonSP
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public int Ataque { get; set; }
+        public int Defensa { get; set; }
+        public int EspecialAtaque { get; set; }
+        public int EspecialDefensa { get; set; }
+        public int Velocidad { get; set; }
+        public int Vida { get; set; }
+        public string NombreImagen { get; set; }
+        public string RutaImagen { get; set; }
+        public string Rareza { get; set; }       
+        public string Detalle { get; set; }
+
+    }
+
+    public class DTOMovimientoSP
+    {
+        public int IdPokemon { get; set; }
+        public string Movimientos { get; set; }
+      
+    }
+
+    public class DTOTipoSP
+    {
+        public int IdPokemon { get; set; }
+        public string NombreTipo { get; set; }
+    }
+
+
 
 
     public class DTOPaginacion {

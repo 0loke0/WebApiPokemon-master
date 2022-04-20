@@ -19,9 +19,9 @@ namespace ApiPokemon.Controllers
             return Ok(servicioPokemon.ListarPokemones(paginacion));
         }
         [HttpPost]
-        public IHttpActionResult ObtenerPokemonesSP()
+        public IHttpActionResult ObtenerPokemonesSP(DTOPaginacion paginacion)
         {
-            return Ok(servicioPokemon.ListarPokemonesSP());
+            return Ok(servicioPokemon.ListarPokemonesSP(paginacion));
         }
 
         [HttpPost]

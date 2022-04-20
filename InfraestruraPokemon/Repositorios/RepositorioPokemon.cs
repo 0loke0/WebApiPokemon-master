@@ -25,8 +25,8 @@ namespace InfraestructuraPokemon.Repositorios
         void EliminarPokemon(int idPokemon);
         void ActualizarPokemon(DTOPokemon pokemon);
         int ObtenerCantidadPokemones();
-        void ModificacionNombrePokemon (int id, string nombre);
-        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp();
+        void ModificacionNombrePokemon(int id, string nombre);
+        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
 
 
 
@@ -54,7 +54,7 @@ namespace InfraestructuraPokemon.Repositorios
           Defensa = pokemon.Defensa,
           EspecialAtaque = pokemon.EspecialAtaque,
           EspecialDefensa = pokemon.EspecialDefensa,
-          Velocidad =pokemon.Velocidad,
+          Velocidad = pokemon.Velocidad,
           Vida = pokemon.Vida,
           NombreImagen = imagenes.Nombre,
           ArchivoImagen = imagenes.ArchivoImagen,
@@ -78,7 +78,7 @@ namespace InfraestructuraPokemon.Repositorios
 
         public int GuardarPokemon(Pokemon nuevoPokemon, DTOIngresoImagen imagenes, string rutaGuardadoImagen)
         {
-            var modeloPokemon = ConvertirDominiosAPersistencia(nuevoPokemon, imagenes,  rutaGuardadoImagen);
+            var modeloPokemon = ConvertirDominiosAPersistencia(nuevoPokemon, imagenes, rutaGuardadoImagen);
             contextoPokemon.Pokemones.Add(modeloPokemon);
             contextoPokemon.SaveChanges();
             return modeloPokemon.IdPokemon;
@@ -157,7 +157,7 @@ namespace InfraestructuraPokemon.Repositorios
 
                     select new DTODetallePokemon
                     {
-                        Id=x.IdPokemon,
+                        Id = x.IdPokemon,
                         Nombre = x.Nombre,
                         Ataque = x.Ataque,
                         Defensa = x.Defensa,
@@ -168,7 +168,7 @@ namespace InfraestructuraPokemon.Repositorios
                         NombreImagen = x.NombreImagen,
                         RutaImagen = x.RutaImagen,
                         Rareza = x.Rareza,
-                        Detalle=x.Detalle,
+                        Detalle = x.Detalle,
                         Movimientos = contextoPokemon.DirectorioMovimientos
                                 .Join(
                                  contextoPokemon.Movimientos,
@@ -202,39 +202,54 @@ namespace InfraestructuraPokemon.Repositorios
                                 ).Where(dt => dt.IdTemporalPokemon == x.IdPokemon)
                                 .ToList()
 
-                       
-                        }).OrderBy(ft=>ft.Id).Skip(ubicacionPagina).Take(paginacion.CantidadRegistros).ToList();
+
+                    }).OrderBy(ft => ft.Id).Skip(ubicacionPagina).Take(paginacion.CantidadRegistros).ToList();
 
 
 
         }
 
 
-        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp()
+
+      
+        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion)
         {
-
-            ContextoPokemon contextoPokemons = new ContextoPokemon();
-            var inicio = new SqlParameter("@InicioBusqueda", 3107);
-            var final = new SqlParameter("@UltimoBusqueda", 3109);
-            //var test = contextoPokemons.Database.SqlQuery<T>("dbo.GetSeccionPokemones @InicioBusqueda, @UltimoBusqueda", inicio, final).ToList();
-
-            //using (var multi = conecction.QueryMultiple("dbo.GetSeccionPokemones @InicioBusqueda, @UltimoBusqueda", inicio, final))
-            //{
-            //    int countA = multi.Read<int>().Single();
-            //    int countB = multi.Read<int>().Single();
-            //}
-            string conn = "Data Source=LOKE;Initial Catalog=DbPokemones;User ID=UsuarioParaApi;Password=Contrasena12345;Trusted_Connection=False;MultipleActiveResultSets=true;";
-
+            int ubicacionPagina = paginacion.Indice * paginacion.CantidadRegistros;
+            string conn = contextoPokemon.Database.Connection.ConnectionString;
             SqlConnection connection = new SqlConnection(conn);
 
+            var values = new { UbicacionPagina = ubicacionPagina, CantidadRegistros = paginacion.CantidadRegistros };
             var procedure = "[GetSeccionPokemones]";
-            var values = new { InicioBusqueda = 3107, UltimoBusqueda = 3109 };
-            var results = connection.Query(procedure, values, commandType: CommandType.StoredProcedure).ToList();
-            var results2 = connection.Query(procedure, values, commandType: CommandType.StoredProcedure).ToList();
-            results.ForEach(r => Console.WriteLine($"{r.OrderID} {r.Subtotal}"));
-            return null;
+
+            var multi = connection.QueryMultiple(procedure, values, commandType: CommandType.StoredProcedure);
+
+            var pokemon = multi.Read<DTOPokemonSP>().ToList();
+            var movimiento = multi.Read<DTOMovimientoSP>().ToList();
+            var tipo = multi.Read<DTOTipoSP>().ToList();
+
+
+            return  from x in pokemon
+                    select new DTODetallePokemon
+                    {
+                        Id = x.Id,
+                        Nombre = x.Nombre,
+                        Ataque = x.Ataque,
+                        Defensa = x.Defensa,
+                        EspecialAtaque = x.EspecialAtaque,
+                        EspecialDefensa = x.EspecialDefensa,
+                        Velocidad = x.Velocidad,
+                        Vida = x.Vida,
+                        NombreImagen = x.NombreImagen,
+                        RutaImagen = x.RutaImagen,
+                        Rareza = x.Rareza,
+                        Detalle = x.Detalle,
+                        Movimientos = movimiento.Where(m=>m.IdPokemon == x.Id).Select(sm=>new DTOMovimiento { NombreMovimiento=sm.Movimientos}).ToList(),
+                        Tipos = tipo.Where( t => t.IdPokemon == x.Id).Select(st => new DTOTipo { NombreTipo = st.NombreTipo }).ToList(),
+                    };
+
+             
         }
-            public int ObtenerCantidadPokemones()
+        public int ObtenerCantidadPokemones()
         {
             return contextoPokemon.Pokemones.Count();
         }
@@ -242,9 +257,10 @@ namespace InfraestructuraPokemon.Repositorios
         public void ModificacionNombrePokemon(int id, string nombre)
         {
             var pokemon = (from x in contextoPokemon.Pokemones
-                         where x.IdPokemon == id
-                         select x).FirstOrDefault();
-            if (pokemon == null) {
+                           where x.IdPokemon == id
+                           select x).FirstOrDefault();
+            if (pokemon == null)
+            {
                 throw new Exception($"No se encontró información del pokémon que se desea modificar ");
             }
             pokemon.Nombre = nombre;
