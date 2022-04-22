@@ -32,14 +32,18 @@ namespace InfraestructuraPokemon.Repositorios
         }
         private void  EliminarRelacionTipos(int id)
         {
-            var info = contextoPokemon.DirectorioTipos.FirstOrDefault(x => x.IdPokemon == id);
+            var info = contextoPokemon.DirectorioTipos.Where(x => x.IdPokemon == id).Select(t=>t).ToList();
             try
             {
                 if (info == null)
                 {
                     throw new Exception($"No se ha encontrado ninguna relacion de los tipos asociados con el pokemon");
                 }
-                contextoPokemon.DirectorioTipos.Remove(info);
+                foreach (var item in info)
+                {
+                    contextoPokemon.DirectorioTipos.Remove(item);
+                }
+                
                 contextoPokemon.SaveChanges();
             }
             catch (Exception e)
@@ -80,26 +84,9 @@ namespace InfraestructuraPokemon.Repositorios
 
         public void ModificacionDirectorioTipos(int id, List<int> IdsTipo)
         {
-            var relacionTipos = (from x in contextoPokemon.DirectorioTipos
-                           where x.IdPokemon == id
-                           select x).ToList();
-
-
-            //Todo:Necesario mejorar esta relacion 
-            if (relacionTipos.Count > IdsTipo.Count|| relacionTipos.Count < IdsTipo.Count) {
-                EliminarRelacionTipos(id);
-                GuardarRelacion(IdsTipo, id);
-            }
-           
-            if (relacionTipos.Count == IdsTipo.Count)
-            {
-                for (int i = 0; i < IdsTipo.Count; i++)
-                {
-                    relacionTipos[i].IdTipo = IdsTipo[i];
-                }
-            }
-
-            contextoPokemon.SaveChanges();
+            EliminarRelacionTipos(id);
+            GuardarRelacion(IdsTipo, id);
+         
         }
     }
 }

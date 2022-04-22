@@ -71,27 +71,10 @@ namespace InfraestructuraPokemon.Repositorios
 
         public void ModificacionDirectorioMovimientos(int id, List<int> idsMovimientos)
         {
-            var relacionMovimientos = (from x in contextoPokemon.DirectorioMovimientos
-                                 where x.IdPokemon == id
-                                 select x).ToList();
 
+            EliminarRelacionMovimientos(id);
+            GuardarRelacion(idsMovimientos, id);
 
-            //Todo:Necesario mejorar esta relacion 
-            if (relacionMovimientos.Count > idsMovimientos.Count || relacionMovimientos.Count < idsMovimientos.Count)
-            {
-                EliminarRelacionMovimientos(id);
-                GuardarRelacion(idsMovimientos, id);
-            }
-
-            if (relacionMovimientos.Count == idsMovimientos.Count)
-            {
-                for (int i = 0; i < idsMovimientos.Count; i++)
-                {
-                    relacionMovimientos[i].IdMovimiento = idsMovimientos[i];
-                }
-            }
-
-            contextoPokemon.SaveChanges();
         }
     }
 }

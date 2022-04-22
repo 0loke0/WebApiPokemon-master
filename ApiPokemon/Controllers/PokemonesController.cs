@@ -47,10 +47,9 @@ namespace ApiPokemon.Controllers
 
         [HttpPost]
         public IHttpActionResult ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
-        {
-            
+        {            
             servicioPokemon.ModificarPokemon(ModificacionAPokemon);
-            return Ok($"Se guardo de forma correcta el pokemon {ModificacionAPokemon.Nombre}");
+            return Ok($"Se guardo de forma correcta el pokemon {ModificacionAPokemon.NombrePokemon}");
         }
     }
 }

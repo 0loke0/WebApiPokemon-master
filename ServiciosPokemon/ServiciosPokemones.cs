@@ -109,11 +109,12 @@ namespace ServiciosPokemon
 
         public void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
         {
+            Pokemon pokemon = new Pokemon(ModificacionAPokemon.NombrePokemon, ModificacionAPokemon.Detalle);
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(ModificacionAPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(ModificacionAPokemon.IdsMovimiento);
-            repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id,ModificacionAPokemon.Nombre);
+            repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id, pokemon.Nombre);
             repositorioDirectorioTipos.ModificacionDirectorioTipos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsTipo);
-            //repositorioDirectorioTipos.ModificacionDirectorioMovimientos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsMovimiento);
+            repositorioDirectorioMovimientos.ModificacionDirectorioMovimientos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsMovimiento);
 
 
         }

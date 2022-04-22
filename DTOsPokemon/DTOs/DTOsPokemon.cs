@@ -19,6 +19,7 @@ namespace DTOsPokemon.DTOS
     
         public class DTOPokemon
     {
+        
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Ataque { get; set; }
@@ -28,8 +29,9 @@ namespace DTOsPokemon.DTOS
         public int Velocidad { get; set; }
         public int Vida { get; set; }
         public string NombreImagen { get; set; }
-        public string ArchivoImagen { get; set; }
         public string RutaImagen { get; set; }
+        public string Rareza { get; set; }
+        public string Detalle { get; set; }
 
     }
     public class DTOTipo
@@ -90,9 +92,10 @@ namespace DTOsPokemon.DTOS
     public class DTOModificacionAPokemon
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
+        public string NombrePokemon { get; set; }
         public List<int> IdsTipo { get; set; }        
         public List<int> IdsMovimiento { get; set; }
+        public string Detalle { get; set; }
 
     }
 

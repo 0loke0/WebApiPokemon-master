@@ -223,9 +223,9 @@ namespace InfraestructuraPokemon.Repositorios
 
             var multi = connection.QueryMultiple(procedure, values, commandType: CommandType.StoredProcedure);
 
-            var pokemon = multi.Read<DTOPokemonSP>().ToList();
-            var movimiento = multi.Read<DTOMovimientoSP>().ToList();
-            var tipo = multi.Read<DTOTipoSP>().ToList();
+            var pokemon = multi.Read<DTOPokemon>().ToList();
+            var movimiento = multi.Read<DTOMovimiento>().ToList();
+            var tipo = multi.Read<DTOTipo>().ToList();
 
 
             return  from x in pokemon
@@ -243,10 +243,22 @@ namespace InfraestructuraPokemon.Repositorios
                         RutaImagen = x.RutaImagen,
                         Rareza = x.Rareza,
                         Detalle = x.Detalle,
-                        Movimientos = movimiento.Where(m=>m.IdPokemon == x.Id).Select(sm=>new DTOMovimiento { NombreMovimiento=sm.Movimientos}).ToList(),
-                        Tipos = tipo.Where( t => t.IdPokemon == x.Id).Select(st => new DTOTipo { NombreTipo = st.NombreTipo }).ToList(),
+                        Movimientos = movimiento.Where(m=>m.IdTemporalPokemon == x.Id)
+                        .Select(sm=>new DTOMovimiento 
+                            {
+                            IdTemporalPokemon = sm.IdTemporalPokemon,
+                            IdMovimiento = sm.IdMovimiento,
+                            NombreMovimiento=sm.NombreMovimiento,
+                            Valor=sm.Valor,
+                        }).ToList(),
+                        Tipos = tipo.Where( t => t.IdTemporalPokemon == x.Id)
+                        .Select(st => new DTOTipo 
+                            {
+                            IdTemporalPokemon = st.IdTemporalPokemon, 
+                            NombreTipo = st.NombreTipo,
+                            IdTipo = st.IdTipo                        
+                        }).ToList(),
                     };
-
              
         }
         public int ObtenerCantidadPokemones()
