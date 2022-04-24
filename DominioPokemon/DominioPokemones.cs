@@ -23,7 +23,6 @@ namespace DominioPokemon
         public string Detalle { get; set; }
 
 
-        //public string Tipo { get; set; }
         public Pokemon(string nombre,string detalle)
         {
             this.Nombre = nombre;
@@ -53,9 +52,6 @@ namespace DominioPokemon
         private void GenerarRareza()
         {
             int sumatoriaCaracteristicas = Ataque + Defensa + EspecialAtaque + EspecialDefensa + Velocidad + Vida;
-
-
-
 
 
             if (sumatoriaCaracteristicas < logartimoDeterminarRareza((100 / 6)))
