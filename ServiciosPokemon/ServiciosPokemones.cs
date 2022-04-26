@@ -17,10 +17,8 @@ namespace ServiciosPokemon
         IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion);
         IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion);
         void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon);
-        void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);
-       
+        void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);       
         void EliminarPokemon(int idPokemon);
-
         int ObtenerCantidadPokemones();
         
     }
@@ -69,16 +67,18 @@ namespace ServiciosPokemon
 
         public IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion)
         {
-            return repositorioPokemon.RecogerPokemonDesdeSp( paginacion);
+            return repositorioPokemon.RecogerPokemonDesdeSp(paginacion);
 
         }
 
 
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
         {
-            
+            //todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
+
+
             //Pokemon hace referencia al domonio
-            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon,nuevoPokemon.Detalle);//todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
+            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon,nuevoPokemon.Detalle);
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(nuevoPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(nuevoPokemon.IdsMovimiento);
             DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre,nuevoPokemon.Imagen.ArchivoImagen);
@@ -119,7 +119,6 @@ namespace ServiciosPokemon
 
         }
 
-
-        
+      
     }
 }

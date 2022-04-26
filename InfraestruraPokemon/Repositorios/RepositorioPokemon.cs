@@ -27,10 +27,7 @@ namespace InfraestructuraPokemon.Repositorios
         int ObtenerCantidadPokemones();
         void ModificacionNombrePokemon(int id, string nombre);
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
-
-
-
-
+        bool validarNombreExistentePokemon(string nombrePokemon);
     }
     public class RepositorioPokemon : IRepositorioPokemon
     {
@@ -277,6 +274,21 @@ namespace InfraestructuraPokemon.Repositorios
             }
             pokemon.Nombre = nombre;
             contextoPokemon.SaveChanges();
+        }
+
+        public bool ValidarNombreExistentePokemon(string nombrePokemon)
+        {
+            var listaDeNombres = 
+                contextoPokemon.Pokemones
+                .Where(x=>x.Nombre.Any(nomb=>nombrePokemon.Equals(nomb)))
+                .Select(s=>s);
+            return true;
+
+        }
+
+        public bool validarNombreExistentePokemon(string nombrePokemon)
+        {
+            throw new NotImplementedException();
         }
     }
 }
