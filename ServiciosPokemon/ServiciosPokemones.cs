@@ -13,14 +13,15 @@ using Utilidades.Utilidades;
 
 namespace ServiciosPokemon
 {
-    public interface IServicioPokemon {
+    public interface IServicioPokemon
+    {
         IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion);
         IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion);
         void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon);
-        void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);       
+        void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);
         void EliminarPokemon(int idPokemon);
         int ObtenerCantidadPokemones();
-        
+
     }
     public class ServicioPokemon : IServicioPokemon
     {
@@ -28,7 +29,6 @@ namespace ServiciosPokemon
         public IRepositorioDirectorioTipos repositorioDirectorioTipos;
         public IRepositorioDirectorioMovimientos repositorioDirectorioMovimientos;
         public IRepositorioImagenes repositorioImagenes;
-
         public ServicioPokemon(
             IRepositorioPokemon repositorioPokemon,
             IRepositorioDirectorioTipos repositorioDirectorioTipos,
@@ -59,40 +59,38 @@ namespace ServiciosPokemon
             return ruta;
         }
 
+        private void ValidarExistenciaNombrePokemon(string nombre)
+        {
+            repositorioPokemon.ValidarNombreExistentePokemon(nombre);
+        }
+
         public IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion)
         {
             return repositorioPokemon.RecogerPokemon(paginacion);
-
         }
 
         public IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion)
         {
             return repositorioPokemon.RecogerPokemonDesdeSp(paginacion);
-
         }
-
 
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)
         {
-            //todo:Pendiente verificar si existe algún nombre en bd igual que el que se está agregando
-
-
+            ValidarExistenciaNombrePokemon(nuevoPokemon.NombrePokemon);
             //Pokemon hace referencia al domonio
-            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon,nuevoPokemon.Detalle);
+            Pokemon pokemon = new Pokemon(nuevoPokemon.NombrePokemon, nuevoPokemon.Detalle);
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(nuevoPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(nuevoPokemon.IdsMovimiento);
-            DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre,nuevoPokemon.Imagen.ArchivoImagen);
+            DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre, nuevoPokemon.Imagen.ArchivoImagen);
 
             //convercion y guardado de imagen
-            byte[] imagenConvertida= UtilidadesImagenes.ConvertirDeBase64Aimagen(nuevoPokemon.Imagen.ArchivoImagen);
-            string rutaGuardadoImagen = GuardarImagenEnLocal(imagenConvertida,nuevoPokemon.Imagen.Nombre);
+            byte[] imagenConvertida = UtilidadesImagenes.ConvertirDeBase64Aimagen(nuevoPokemon.Imagen.ArchivoImagen);
+            string rutaGuardadoImagen = GuardarImagenEnLocal(imagenConvertida, nuevoPokemon.Imagen.Nombre);
 
-            //DTOImagen img= repositorioImagenes.ConvertirDominioADtoGuardandoImagenEnLocal(imagenes);
             var idPokemonGuardado = repositorioPokemon.GuardarPokemon(pokemon, nuevoPokemon.Imagen, rutaGuardadoImagen);
 
             repositorioDirectorioTipos.GuardarRelacion(directorioTipos.IdsTipo, idPokemonGuardado);
             repositorioDirectorioMovimientos.GuardarRelacion(directorioMovimiento.IdsMovimiento, idPokemonGuardado);
-          
         }
 
         public void EliminarPokemon(int idPokemon)
@@ -109,16 +107,28 @@ namespace ServiciosPokemon
 
         public void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
         {
+
+
+          
+
+            ValidarExistenciaNombrePokemon(ModificacionAPokemon.NombrePokemon);
+
             Pokemon pokemon = new Pokemon(ModificacionAPokemon.NombrePokemon, ModificacionAPokemon.Detalle);
+
+            //comprobación?
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(ModificacionAPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(ModificacionAPokemon.IdsMovimiento);
-            repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id, pokemon.Nombre);
-            repositorioDirectorioTipos.ModificacionDirectorioTipos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsTipo);
-            repositorioDirectorioMovimientos.ModificacionDirectorioMovimientos(ModificacionAPokemon.Id,ModificacionAPokemon.IdsMovimiento);
+            
+            //modificacion en que hacen los repos 
 
+            //EliminarRelacionTipos(id);
+            //GuardarRelacion(IdsTipo, id);
+            repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id, pokemon.Nombre);
+            repositorioDirectorioTipos.ModificacionDirectorioTipos(ModificacionAPokemon.Id, directorioTipos.IdsTipo);
+            repositorioDirectorioMovimientos.ModificacionDirectorioMovimientos(ModificacionAPokemon.Id, directorioMovimiento.IdsMovimiento);
 
         }
 
-      
+
     }
 }

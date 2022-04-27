@@ -84,6 +84,8 @@ namespace InfraestructuraPokemon.Repositorios
 
         public void ModificacionDirectorioTipos(int id, List<int> IdsTipo)
         {
+
+
             EliminarRelacionTipos(id);
             GuardarRelacion(IdsTipo, id);
          
