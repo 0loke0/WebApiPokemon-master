@@ -8,30 +8,31 @@ using System.Threading.Tasks;
 
 namespace InfraestructuraPokemon.Repositorios
 {
-    public interface IRepositorioMovimientos {
+    public interface IRepositorioMovimientos
+    {
         IEnumerable<DTOMovimiento> LeerMovimientos();
     }
     public class RepositorioMovimientos : IRepositorioMovimientos
-    {        
+    {
 
         ContextoPokemon contextoPokemon;
-        public RepositorioMovimientos(ContextoPokemon contextoPokemon )
+        public RepositorioMovimientos(ContextoPokemon contextoPokemon)
         {
             this.contextoPokemon = contextoPokemon;
         }
 
-        public DTOMovimiento ConbertirADto(Movimientos movimiento) {
-            return new DTOMovimiento {
+        public DTOMovimiento ConbertirADto(Movimientos movimiento)
+        {
+            return new DTOMovimiento
+            {
                 IdMovimiento = movimiento.IdMovimiento,
                 NombreMovimiento = movimiento.NombreMovimiento,
-                Valor = movimiento.Valor            
+                Valor = movimiento.Valor
             };
         }
         public IEnumerable<DTOMovimiento> LeerMovimientos()
         {
-           
-            return contextoPokemon.Movimientos.ToList().Select(x=>ConbertirADto(x));    
-           
+            return contextoPokemon.Movimientos.ToList().Select(x => ConbertirADto(x));
         }
     }
 }

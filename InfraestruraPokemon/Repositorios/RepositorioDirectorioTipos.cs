@@ -11,8 +11,8 @@ namespace InfraestructuraPokemon.Repositorios
 {
     public interface IRepositorioDirectorioTipos {
         void GuardarRelacion(List<int> directorioTipos, int idPokemonGuardado);
-        IEnumerable<DTORelacionPokemonTipo> BuscarRelacionPokemonTipo(int idpokemon);
-        void ModificacionDirectorioTipos(int id, List<int> IdsTipo);
+        IEnumerable<DTORelacionPokemonTipo> BuscarRelacionPokemonTipo(int idpokemon);      
+        void EliminarRelacionTipos(int id);
     }
     public class RepositorioDirectorioTipos: IRepositorioDirectorioTipos
     {
@@ -30,7 +30,7 @@ namespace InfraestructuraPokemon.Repositorios
                 IdPokemon = idPokemonGuardado
             };
         }
-        private void  EliminarRelacionTipos(int id)
+        public void  EliminarRelacionTipos(int id)
         {
             var info = contextoPokemon.DirectorioTipos.Where(x => x.IdPokemon == id).Select(t=>t).ToList();
             try
@@ -82,13 +82,6 @@ namespace InfraestructuraPokemon.Repositorios
             return data;
         }
 
-        public void ModificacionDirectorioTipos(int id, List<int> IdsTipo)
-        {
-
-
-            EliminarRelacionTipos(id);
-            GuardarRelacion(IdsTipo, id);
-         
-        }
+      
     }
 }

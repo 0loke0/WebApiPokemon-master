@@ -12,7 +12,8 @@ namespace InfraestructuraPokemon.Repositorios
     public interface IRepositorioDirectorioMovimientos
     {
         void GuardarRelacion(List<int> directorioHabilidades, int idPokemonGuardado);
-        void ModificacionDirectorioMovimientos(int id, List<int> idsMovimientos);
+        
+        void EliminarRelacionMovimientos(int id);
     }
     public class RepositorioDirectorioMovimientos : IRepositorioDirectorioMovimientos
     {
@@ -32,7 +33,7 @@ namespace InfraestructuraPokemon.Repositorios
             };
         }
 
-        private void EliminarRelacionMovimientos(int id)
+        public void EliminarRelacionMovimientos(int id)
         {
             var info = contextoPokemon.DirectorioMovimientos.FirstOrDefault(x => x.IdPokemon == id);
             try
@@ -69,12 +70,6 @@ namespace InfraestructuraPokemon.Repositorios
             
         }
 
-        public void ModificacionDirectorioMovimientos(int id, List<int> idsMovimientos)
-        {
-
-            EliminarRelacionMovimientos(id);
-            GuardarRelacion(idsMovimientos, id);
-
-        }
+        
     }
 }

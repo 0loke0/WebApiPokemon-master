@@ -110,22 +110,22 @@ namespace ServiciosPokemon
 
 
           
-
+            //se valida consigo mismo si no se modifica el nombre
             ValidarExistenciaNombrePokemon(ModificacionAPokemon.NombrePokemon);
 
             Pokemon pokemon = new Pokemon(ModificacionAPokemon.NombrePokemon, ModificacionAPokemon.Detalle);
 
-            //comprobación?
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(ModificacionAPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(ModificacionAPokemon.IdsMovimiento);
-            
-            //modificacion en que hacen los repos 
+       
 
-            //EliminarRelacionTipos(id);
-            //GuardarRelacion(IdsTipo, id);
             repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id, pokemon.Nombre);
-            repositorioDirectorioTipos.ModificacionDirectorioTipos(ModificacionAPokemon.Id, directorioTipos.IdsTipo);
-            repositorioDirectorioMovimientos.ModificacionDirectorioMovimientos(ModificacionAPokemon.Id, directorioMovimiento.IdsMovimiento);
+
+            repositorioDirectorioTipos.EliminarRelacionTipos(ModificacionAPokemon.Id);
+            repositorioDirectorioTipos.GuardarRelacion(directorioTipos.IdsTipo, ModificacionAPokemon.Id);
+
+            repositorioDirectorioMovimientos.EliminarRelacionMovimientos(ModificacionAPokemon.Id);
+            repositorioDirectorioMovimientos.GuardarRelacion(directorioMovimiento.IdsMovimiento,ModificacionAPokemon.Id);
 
         }
 
