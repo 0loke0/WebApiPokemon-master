@@ -2,6 +2,7 @@
 using System.Web.Http;
 using ServiciosPokemon;
 using DTOsPokemon.DTOS;
+using System.Collections.Generic;
 
 namespace ApiPokemon.Controllers
 {
@@ -14,9 +15,9 @@ namespace ApiPokemon.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult ObtenerPokemones(DTOPaginacion paginacion)
+        public IEnumerable<DTODetallePokemon> ObtenerPokemones(DTOPaginacion paginacion)
         {         
-            return Ok(servicioPokemon.ListarPokemones(paginacion));
+            return servicioPokemon.ListarPokemones(paginacion);
         }
         [HttpPost]
         public IHttpActionResult ObtenerPokemonesSP(DTOPaginacion paginacion)

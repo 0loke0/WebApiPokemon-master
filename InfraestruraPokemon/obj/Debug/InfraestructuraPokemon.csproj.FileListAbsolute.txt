@@ -150,3 +150,5 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\Infraestru
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\obj\Debug\InfraestructuraPokemon.csproj.GenerateResource.Cache
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\bin\Debug\Dapper.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\bin\Debug\Dapper.xml
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\bin\Debug\Dapper.dll
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\InfraestruraPokemon\bin\Debug\Dapper.xml

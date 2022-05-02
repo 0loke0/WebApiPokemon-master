@@ -212,3 +212,5 @@ C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramew
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\EntityFramework.SqlServer.xml
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Dapper.dll
 C:\Users\danfe\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Dapper.xml
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Dapper.dll
+C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\ApiPokemon\bin\Dapper.xml
