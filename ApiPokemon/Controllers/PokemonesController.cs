@@ -14,11 +14,16 @@ namespace ApiPokemon.Controllers
             this.servicioPokemon = servicioPokemon;
         }
 
+        
+
         [HttpPost]
-        public IEnumerable<DTODetallePokemon> ObtenerPokemones(DTOPaginacion paginacion)
-        {         
-            return servicioPokemon.ListarPokemones(paginacion);
+        public IEnumerable<DTODetallePokemon> ObtenerPokemonesConFiltros(DTOPaginacionConFiltros paginacion)
+        {
+            return servicioPokemon.ListarPokemonesConFiltros(paginacion);
         }
+
+
+        
         [HttpPost]
         public IHttpActionResult ObtenerPokemonesSP(DTOPaginacion paginacion)
         {

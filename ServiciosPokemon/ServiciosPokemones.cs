@@ -15,12 +15,14 @@ namespace ServiciosPokemon
 {
     public interface IServicioPokemon
     {
-        IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion);
+        
         IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion);
+        IEnumerable<DTODetallePokemon> ListarPokemonesConFiltros(DTOPaginacionConFiltros paginacion);
         void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon);
         void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);
         void EliminarPokemon(int idPokemon);
         int ObtenerCantidadPokemones();
+        
 
     }
     public class ServicioPokemon : IServicioPokemon
@@ -41,7 +43,7 @@ namespace ServiciosPokemon
             this.repositorioDirectorioMovimientos = repositorioDirectorioMovimientos;
             this.repositorioImagenes = repositorioImagenes;
         }
-
+        
         private string GuardarImagenEnLocal(byte[] imagenBytes, string nombre)
         {
             string directorioDeGuardado = @"C:\Users\danfe\Documents\GitHub\consumoapi\src\ImagenesPokemon";
@@ -64,14 +66,16 @@ namespace ServiciosPokemon
             repositorioPokemon.ValidarNombreExistentePokemon(nombre);
         }
 
-        public IEnumerable<DTODetallePokemon> ListarPokemones(DTOPaginacion paginacion)
-        {
-            return repositorioPokemon.RecogerPokemon(paginacion);
-        }
+       
 
         public IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion)
         {
             return repositorioPokemon.RecogerPokemonDesdeSp(paginacion);
+        }
+
+         public IEnumerable<DTODetallePokemon> ListarPokemonesConFiltros(DTOPaginacionConFiltros paginacion)
+        {
+            return repositorioPokemon.RecogerPokemonDesdeSpConFiltros(paginacion);
         }
 
         public void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)

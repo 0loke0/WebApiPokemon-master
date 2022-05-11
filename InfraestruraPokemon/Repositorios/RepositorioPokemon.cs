@@ -17,7 +17,7 @@ namespace InfraestructuraPokemon.Repositorios
 {
     public interface IRepositorioPokemon
     {
-        IEnumerable<DTODetallePokemon> RecogerPokemon(DTOPaginacion paginacion);
+       
         IEnumerable<DTOPokemon> LeerPokemon();
         IEnumerable<DTOPokemon> BuscarPokemones(string nombrePokemon);
         DTOPokemon BuscarPokemonEspecifico(string nombrePokemon);
@@ -27,6 +27,7 @@ namespace InfraestructuraPokemon.Repositorios
         int ObtenerCantidadPokemones();
         void ModificacionNombrePokemon(int id, string nombre);
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
+        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOPaginacionConFiltros paginacion);
         void ValidarNombreExistentePokemon(string nombrePokemon);
     }
     public class RepositorioPokemon : IRepositorioPokemon
@@ -145,66 +146,7 @@ namespace InfraestructuraPokemon.Repositorios
             return data;
         }
 
-        //todo: dejar mas clean la funcion recogerPokemon (muchas acciones dentro de una misma funcion)
-        public IEnumerable<DTODetallePokemon> RecogerPokemon(DTOPaginacion paginacion)
-        {
-            int ubicacionPagina = paginacion.Indice * paginacion.CantidadRegistros;
-
-            return (from x in contextoPokemon.Pokemones
-
-                    select new DTODetallePokemon
-                    {
-                        Id = x.IdPokemon,
-                        Nombre = x.Nombre,
-                        Ataque = x.Ataque,
-                        Defensa = x.Defensa,
-                        EspecialAtaque = x.EspecialAtaque,
-                        EspecialDefensa = x.EspecialDefensa,
-                        Velocidad = x.Velocidad,
-                        Vida = x.Vida,
-                        NombreImagen = x.NombreImagen,
-                        RutaImagen = x.RutaImagen,
-                        Rareza = x.Rareza,
-                        Detalle = x.Detalle,
-                        Movimientos = contextoPokemon.DirectorioMovimientos
-                                .Join(
-                                 contextoPokemon.Movimientos,
-                                 directorioMovi => directorioMovi.IdMovimiento,
-                                movi => movi.IdMovimiento,
-                                (directorioMovi, movi) =>
-
-                                new DTOMovimiento
-                                {
-                                    IdTemporalPokemon = directorioMovi.IdPokemon,
-                                    IdMovimiento = movi.IdMovimiento,
-                                    NombreMovimiento = movi.NombreMovimiento,
-                                    Valor = movi.Valor
-                                }).Where(dm => dm.IdTemporalPokemon == x.IdPokemon)
-                                .ToList(),
-
-                        Tipos = contextoPokemon.DirectorioTipos
-                                .Join(
-                                contextoPokemon.Tipos,
-                                directorioTip => directorioTip.IdTipo,
-                                tip => tip.IdTipo,
-
-                                (directorioTip, tip) =>
-
-                                new DTOTipo
-                                {
-                                    IdTemporalPokemon = directorioTip.IdPokemon,
-                                    IdTipo = tip.IdTipo,
-                                    NombreTipo = tip.NombreTipo
-                                }
-                                ).Where(dt => dt.IdTemporalPokemon == x.IdPokemon)
-                                .ToList()
-
-
-                    }).OrderBy(ft => ft.Id).Skip(ubicacionPagina).Take(paginacion.CantidadRegistros).ToList();
-
-
-
-        }
+     
 
 
 
@@ -257,6 +199,62 @@ namespace InfraestructuraPokemon.Repositorios
                         }).ToList(),
                     };
              
+        }
+
+        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOPaginacionConFiltros paginacion)
+        {
+            int ubicacionPagina = paginacion.Indice * paginacion.CantidadRegistros;
+            string conn = contextoPokemon.Database.Connection.ConnectionString;
+            SqlConnection connection = new SqlConnection(conn);
+
+            var values = new {
+                UbicacionPagina = ubicacionPagina,
+                CantidadRegistros = paginacion.CantidadRegistros,
+                Nombre = paginacion.Nombre,
+                VidaMaxima = paginacion.VidaMaxima,
+                VidaVidaMinima = paginacion.VidaMinima
+            };
+            var procedure = "[GetSeccionPokemonesConFiltros]";
+
+            var multi = connection.QueryMultiple(procedure, values, commandType: CommandType.StoredProcedure);
+
+            var pokemon = multi.Read<DTOPokemon>().ToList();
+            var movimiento = multi.Read<DTOMovimiento>().ToList();
+            var tipo = multi.Read<DTOTipo>().ToList();
+
+
+            return from x in pokemon
+                   select new DTODetallePokemon
+                   {
+                       Id = x.Id,
+                       Nombre = x.Nombre,
+                       Ataque = x.Ataque,
+                       Defensa = x.Defensa,
+                       EspecialAtaque = x.EspecialAtaque,
+                       EspecialDefensa = x.EspecialDefensa,
+                       Velocidad = x.Velocidad,
+                       Vida = x.Vida,
+                       NombreImagen = x.NombreImagen,
+                       RutaImagen = x.RutaImagen,
+                       Rareza = x.Rareza,
+                       Detalle = x.Detalle,
+                       Movimientos = movimiento.Where(m => m.IdTemporalPokemon == x.Id)
+                       .Select(sm => new DTOMovimiento
+                       {
+                           IdTemporalPokemon = sm.IdTemporalPokemon,
+                           IdMovimiento = sm.IdMovimiento,
+                           NombreMovimiento = sm.NombreMovimiento,
+                           Valor = sm.Valor,
+                       }).ToList(),
+                       Tipos = tipo.Where(t => t.IdTemporalPokemon == x.Id)
+                       .Select(st => new DTOTipo
+                       {
+                           IdTemporalPokemon = st.IdTemporalPokemon,
+                           NombreTipo = st.NombreTipo,
+                           IdTipo = st.IdTipo
+                       }).ToList(),
+                   };
+
         }
         public int ObtenerCantidadPokemones()
         {
