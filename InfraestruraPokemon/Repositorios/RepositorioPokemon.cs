@@ -212,7 +212,7 @@ namespace InfraestructuraPokemon.Repositorios
                 CantidadRegistros = paginacion.CantidadRegistros,
                 Nombre = paginacion.Nombre,
                 VidaMaxima = paginacion.VidaMaxima,
-                VidaVidaMinima = paginacion.VidaMinima
+                VidaMinima = paginacion.VidaMinima
             };
             var procedure = "[GetSeccionPokemonesConFiltros]";
 
@@ -223,7 +223,7 @@ namespace InfraestructuraPokemon.Repositorios
             var tipo = multi.Read<DTOTipo>().ToList();
 
 
-            return from x in pokemon
+            return from x in pokemon 
                    select new DTODetallePokemon
                    {
                        Id = x.Id,

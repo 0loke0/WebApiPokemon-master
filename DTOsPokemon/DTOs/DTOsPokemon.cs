@@ -163,8 +163,8 @@ namespace DTOsPokemon.DTOS
         public int Indice { get; set; }
         public int CantidadRegistros { get; set; }
         public string Nombre { get; set; }
-        public int VidaMaxima { get; set; }
-        public int VidaMinima { get; set; }
+        public int? VidaMaxima { get; set; }
+        public int? VidaMinima { get; set; }
 
     }
 
