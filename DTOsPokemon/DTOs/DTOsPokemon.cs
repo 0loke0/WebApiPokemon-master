@@ -162,10 +162,19 @@ namespace DTOsPokemon.DTOS
     {
         public int Indice { get; set; }
         public int CantidadRegistros { get; set; }
+        public int Identificador { get; set; }
         public string Nombre { get; set; }
+        public int AtaqueMinimo { get; set; }
+        public int AtaqueMaximo { get; set; }
+        public int AtaqueEspecialMinimo { get; set; }
+        public int AtaqueEspecialMaximo { get; set; }
         public int? VidaMaxima { get; set; }
         public int? VidaMinima { get; set; }
-
+        public int DefensaMinimo { get; set; }
+        public int DefensaMaximo { get; set; }
+        public int DefensaEspecialMinimo { get; set; }
+        public int DefensaEspecialMaximo { get; set; }
+        public int VelocidadMinimo { get; set; }
+        public int VelocidadMaximo { get; set; }
+      }
     }
-
-}
