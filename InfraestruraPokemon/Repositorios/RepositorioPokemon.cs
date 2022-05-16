@@ -210,9 +210,21 @@ namespace InfraestructuraPokemon.Repositorios
             var values = new {
                 UbicacionPagina = ubicacionPagina,
                 CantidadRegistros = paginacion.CantidadRegistros,
+                Identificador = paginacion.Identificador,
                 Nombre = paginacion.Nombre,
-                VidaMaxima = paginacion.VidaMaxima,
-                VidaMinima = paginacion.VidaMinima
+                AtaqueMinimo = paginacion.AtaqueMinimo,    
+                AtaqueMaximo = paginacion.AtaqueMaximo,    
+                AtaqueEspecialMinimo = paginacion.AtaqueEspecialMinimo,    
+                AtaqueEspecialMaximo = paginacion.AtaqueEspecialMaximo,     
+                VidaMinima = paginacion.VidaMinima,    
+                VidaMaxima = paginacion.VidaMaxima,    
+                DefensaMinima =paginacion.DefensaMinima,    
+                DefensaMaxima = paginacion.DefensaMaxima,    
+                DefensaEspecialMinima =paginacion.AtaqueEspecialMinimo,   
+                DefensaEspecialMaxima =paginacion.AtaqueEspecialMaximo,    
+                VelocidadMinima = paginacion.VelocidadMinima,    
+                VelocidadMaxima = paginacion.VelocidadMaxima,              
+               
             };
             var procedure = "[GetSeccionPokemonesConFiltros]";
 
