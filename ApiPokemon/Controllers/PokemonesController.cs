@@ -52,6 +52,14 @@ namespace ApiPokemon.Controllers
         }
 
         [HttpPost]
+        public IHttpActionResult ObtenerCantidadPokemonFiltrados(DTOFiltros Filtros)
+        {
+            return Ok(servicioPokemon.ObtenerCantidadPokemonesFiltrado(Filtros));
+        }
+
+
+
+        [HttpPost]
         public IHttpActionResult ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
         {            
             servicioPokemon.ModificarPokemon(ModificacionAPokemon);

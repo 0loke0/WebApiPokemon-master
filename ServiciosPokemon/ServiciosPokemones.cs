@@ -22,7 +22,7 @@ namespace ServiciosPokemon
         void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);
         void EliminarPokemon(int idPokemon);
         int ObtenerCantidadPokemones();
-        
+        int ObtenerCantidadPokemonesFiltrado(DTOFiltros Filtros);
 
     }
     public class ServicioPokemon : IServicioPokemon
@@ -106,6 +106,12 @@ namespace ServiciosPokemon
         {
             return repositorioPokemon.ObtenerCantidadPokemones();
         }
+
+        public int ObtenerCantidadPokemonesFiltrado(DTOFiltros Filtros)
+        {
+            return repositorioPokemon.ObtenerCantidadPokemonesFiltrados(Filtros);
+        }
+
 
 
 

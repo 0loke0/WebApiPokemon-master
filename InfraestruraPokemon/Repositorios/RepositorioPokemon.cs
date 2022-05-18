@@ -29,6 +29,7 @@ namespace InfraestructuraPokemon.Repositorios
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion);
         void ValidarNombreExistentePokemon(string nombrePokemon);
+        int ObtenerCantidadPokemonesFiltrados(DTOFiltros Filtros );
     }
     public class RepositorioPokemon : IRepositorioPokemon
     {
@@ -268,10 +269,45 @@ namespace InfraestructuraPokemon.Repositorios
                    };
 
         }
-        public int ObtenerCantidadPokemones()
+        public int ObtenerCantidadPokemones( )
         {
+            
             return contextoPokemon.Pokemones.Count();
         }
+
+        public int ObtenerCantidadPokemonesFiltrados(DTOFiltros Filtros)
+        {
+            string conn = contextoPokemon.Database.Connection.ConnectionString;
+            SqlConnection connection = new SqlConnection(conn);
+
+            var values = new
+            {
+                Identificador = Filtros.Identificador,
+                Nombre = Filtros.Nombre,
+                AtaqueMinimo = Filtros.AtaqueMinimo,
+                AtaqueMaximo = Filtros.AtaqueMaximo,
+                AtaqueEspecialMinimo = Filtros.AtaqueEspecialMinimo,
+                AtaqueEspecialMaximo = Filtros.AtaqueEspecialMaximo,
+                VidaMinima = Filtros.VidaMinima,
+                VidaMaxima = Filtros.VidaMaxima,
+                DefensaMinima = Filtros.DefensaMinima,
+                DefensaMaxima = Filtros.DefensaMaxima,
+                DefensaEspecialMinima = Filtros.AtaqueEspecialMinimo,
+                DefensaEspecialMaxima = Filtros.AtaqueEspecialMaximo,
+                VelocidadMinima = Filtros.VelocidadMinima,
+                VelocidadMaxima = Filtros.VelocidadMaxima,
+            };
+            var procedure = "[GetCantidadPokemonesFiltrados]";
+
+            //pendiente dejarlo como singular no multiple
+            var multi = connection.QueryMultiple(procedure, values, commandType: CommandType.StoredProcedure);
+
+            var pokemon = multi.Read<int>().ToList();
+            
+            return pokemon.FirstOrDefault();
+
+        }
+
 
         public void ModificacionNombrePokemon(int id, string nombre)
         {
