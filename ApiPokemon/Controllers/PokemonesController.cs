@@ -17,7 +17,7 @@ namespace ApiPokemon.Controllers
         
 
         [HttpPost]
-        public IEnumerable<DTODetallePokemon> ObtenerPokemonesConFiltros(DTOPaginacionConFiltros paginacion)
+        public IEnumerable<DTODetallePokemon> ObtenerPokemonesConFiltros(DTOFormularioConsulta paginacion)
         {
             return servicioPokemon.ListarPokemonesConFiltros(paginacion);
         }

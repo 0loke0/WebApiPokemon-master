@@ -150,15 +150,21 @@ namespace DTOsPokemon.DTOS
     }
 
 
+    public class DTOFormularioConsulta { 
+    public DTOPaginacion Paginacion { get; set; }
+    public DTOFiltros Filtros { get; set; }
+
+    }
 
 
     public class DTOPaginacion {
         public int Indice { get; set; }
         public int CantidadRegistros { get; set; }
+       
     }
 
 
-    public class DTOPaginacionConFiltros
+    public class DTOFiltros
     {
         public int Indice { get; set; }
         public int CantidadRegistros { get; set; }

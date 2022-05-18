@@ -27,7 +27,7 @@ namespace InfraestructuraPokemon.Repositorios
         int ObtenerCantidadPokemones();
         void ModificacionNombrePokemon(int id, string nombre);
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
-        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOPaginacionConFiltros paginacion);
+        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion);
         void ValidarNombreExistentePokemon(string nombrePokemon);
     }
     public class RepositorioPokemon : IRepositorioPokemon
@@ -201,29 +201,29 @@ namespace InfraestructuraPokemon.Repositorios
              
         }
 
-        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOPaginacionConFiltros paginacion)
+        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion)
         {
-            int ubicacionPagina = paginacion.Indice * paginacion.CantidadRegistros;
+            int ubicacionPagina = paginacion.Paginacion.Indice * paginacion.Paginacion.CantidadRegistros;
             string conn = contextoPokemon.Database.Connection.ConnectionString;
             SqlConnection connection = new SqlConnection(conn);
 
             var values = new {
                 UbicacionPagina = ubicacionPagina,
-                CantidadRegistros = paginacion.CantidadRegistros,
-                Identificador = paginacion.Identificador,
-                Nombre = paginacion.Nombre,
-                AtaqueMinimo = paginacion.AtaqueMinimo,    
-                AtaqueMaximo = paginacion.AtaqueMaximo,    
-                AtaqueEspecialMinimo = paginacion.AtaqueEspecialMinimo,    
-                AtaqueEspecialMaximo = paginacion.AtaqueEspecialMaximo,     
-                VidaMinima = paginacion.VidaMinima,    
-                VidaMaxima = paginacion.VidaMaxima,    
-                DefensaMinima =paginacion.DefensaMinima,    
-                DefensaMaxima = paginacion.DefensaMaxima,    
-                DefensaEspecialMinima =paginacion.AtaqueEspecialMinimo,   
-                DefensaEspecialMaxima =paginacion.AtaqueEspecialMaximo,    
-                VelocidadMinima = paginacion.VelocidadMinima,    
-                VelocidadMaxima = paginacion.VelocidadMaxima,              
+                CantidadRegistros = paginacion.Paginacion.CantidadRegistros,
+                Identificador = paginacion.Filtros.Identificador,
+                Nombre = paginacion.Filtros.Nombre,
+                AtaqueMinimo = paginacion.Filtros.AtaqueMinimo,    
+                AtaqueMaximo = paginacion.Filtros.AtaqueMaximo,    
+                AtaqueEspecialMinimo = paginacion.Filtros.AtaqueEspecialMinimo,    
+                AtaqueEspecialMaximo = paginacion.Filtros.AtaqueEspecialMaximo,     
+                VidaMinima = paginacion.Filtros.VidaMinima,    
+                VidaMaxima = paginacion.Filtros.VidaMaxima,    
+                DefensaMinima =paginacion.Filtros.DefensaMinima,    
+                DefensaMaxima = paginacion.Filtros.DefensaMaxima,    
+                DefensaEspecialMinima =paginacion.Filtros.AtaqueEspecialMinimo,   
+                DefensaEspecialMaxima =paginacion.Filtros.AtaqueEspecialMaximo,    
+                VelocidadMinima = paginacion.Filtros.VelocidadMinima,    
+                VelocidadMaxima = paginacion.Filtros.VelocidadMaxima,             
                
             };
             var procedure = "[GetSeccionPokemonesConFiltros]";
