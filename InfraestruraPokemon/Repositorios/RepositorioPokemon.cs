@@ -28,7 +28,7 @@ namespace InfraestructuraPokemon.Repositorios
         void ModificacionNombrePokemon(int id, string nombre);
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion);
-        void ValidarNombreExistentePokemon(string nombrePokemon);
+        int BuscarCantidadMismoNombre(string nombrePokemon);
         int ObtenerCantidadPokemonesFiltrados(DTOFiltros Filtros );
     }
     public class RepositorioPokemon : IRepositorioPokemon
@@ -322,12 +322,9 @@ namespace InfraestructuraPokemon.Repositorios
             contextoPokemon.SaveChanges();
         }
 
-        public void ValidarNombreExistentePokemon(string nombrePokemon)
+        public int BuscarCantidadMismoNombre(string nombrePokemon)
         {
-            if (contextoPokemon.Pokemones.Any(pokemon => nombrePokemon.Equals(pokemon.Nombre)))
-            {
-                throw new Exception($"El nombre del Pokémon '{nombrePokemon}' ya se encuentra registrado");
-            }
+           return contextoPokemon.Pokemones.Select(pokemon => nombrePokemon.Equals(pokemon.Nombre)).Count();           
              
         }
 

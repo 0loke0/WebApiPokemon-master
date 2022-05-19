@@ -35,20 +35,26 @@ namespace InfraestructuraPokemon.Repositorios
 
         public void EliminarRelacionMovimientos(int id)
         {
-            var info = contextoPokemon.DirectorioMovimientos.FirstOrDefault(x => x.IdPokemon == id);
+            var info = contextoPokemon.DirectorioMovimientos.Where(x => x.IdPokemon == id).Select(t => t).ToList();
             try
             {
                 if (info == null)
                 {
                     throw new Exception($"No se ha encontrado ninguna relacion de los movimientos asociados con el pokemon ");
                 }
-                contextoPokemon.DirectorioMovimientos.Remove(info);
+                foreach (var item in info)
+                {
+                    contextoPokemon.DirectorioMovimientos.Remove(item);
+                }                
                 contextoPokemon.SaveChanges();
             }
             catch (Exception e)
             {
                 throw new Exception($"Se ha generado un error al eliminar la relacion de los movimientos asociados con el pokemon : {e}");
             }
+
+            
+          
         }
 
 
