@@ -324,7 +324,7 @@ namespace InfraestructuraPokemon.Repositorios
 
         public int BuscarCantidadMismoNombre(string nombrePokemon)
         {
-           return contextoPokemon.Pokemones.Select(pokemon => nombrePokemon.Equals(pokemon.Nombre)).Count();           
+           return contextoPokemon.Pokemones.Where(pokemon => pokemon.Nombre.Equals(nombrePokemon)).Count();           
              
         }
 

@@ -63,6 +63,7 @@ namespace ServiciosPokemon
 
         private void ValidarExistenciaNombrePokemon(string nombre)
         {
+            int x = repositorioPokemon.BuscarCantidadMismoNombre(nombre);
             if (repositorioPokemon.BuscarCantidadMismoNombre(nombre) > 2)
             {
                 throw new Exception($"Ya existe mas de un pokemon con este nombre ");
@@ -126,23 +127,15 @@ namespace ServiciosPokemon
         public void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
         {
 
-
-
-
-
             DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(ModificacionAPokemon.IdsTipo);
             DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(ModificacionAPokemon.IdsMovimiento);
-
-
 
             if (!string.IsNullOrEmpty(ModificacionAPokemon.NombrePokemon))
             {
                 ValidarExistenciaNombrePokemon(ModificacionAPokemon.NombrePokemon);
                 Pokemon pokemon = new Pokemon(ModificacionAPokemon.NombrePokemon, ModificacionAPokemon.Detalle);
                 repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id, pokemon.Nombre);
-            }
-
-            
+            }          
 
             repositorioDirectorioTipos.EliminarRelacionTipos(ModificacionAPokemon.Id);
             repositorioDirectorioTipos.GuardarRelacion(directorioTipos.IdsTipo, ModificacionAPokemon.Id);
