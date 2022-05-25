@@ -61,17 +61,13 @@ namespace ServiciosPokemon
             return ruta;
         }
 
-        private void ValidarExistenciaNombrePokemon(string nombre)
+        private void ValidarExistenciaNombrePokemon(string nombre,int? id = null)
         {
-            int x = repositorioPokemon.BuscarCantidadMismoNombre(nombre);
-            if (repositorioPokemon.BuscarCantidadMismoNombre(nombre) > 2)
+            int cantidadNombreEncontrados = repositorioPokemon.BuscarCantidadMismoNombre(nombre, id);
+            if (cantidadNombreEncontrados >= 1)
             {
-                throw new Exception($"Ya existe mas de un pokemon con este nombre ");
-            }
-            if (repositorioPokemon.BuscarCantidadMismoNombre(nombre) == 1)
-            {
-                throw new Exception($"Ya existe un pokemon con este nombre ");
-            }
+                throw new Exception($"Ya existe un pokemon con este nombre");
+            }         
                     
         }
 
@@ -124,24 +120,21 @@ namespace ServiciosPokemon
 
 
 
-        public void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
+        public void ModificarPokemon(DTOModificacionAPokemon modificacionAPokemon)
         {
 
-            DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(ModificacionAPokemon.IdsTipo);
-            DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(ModificacionAPokemon.IdsMovimiento);
+            DominioDirectorioTipos directorioTipos = new DominioDirectorioTipos(modificacionAPokemon.IdsTipo);
+            DominioDirectorioMovimiento directorioMovimiento = new DominioDirectorioMovimiento(modificacionAPokemon.IdsMovimiento);
+            Pokemon pokemon = new Pokemon(modificacionAPokemon.NombrePokemon, modificacionAPokemon.Detalle);
+        
+            ValidarExistenciaNombrePokemon(modificacionAPokemon.NombrePokemon, modificacionAPokemon.Id);                
+            repositorioPokemon.ModificarPokemon(modificacionAPokemon.Id, pokemon);    
 
-            if (!string.IsNullOrEmpty(ModificacionAPokemon.NombrePokemon))
-            {
-                ValidarExistenciaNombrePokemon(ModificacionAPokemon.NombrePokemon);
-                Pokemon pokemon = new Pokemon(ModificacionAPokemon.NombrePokemon, ModificacionAPokemon.Detalle);
-                repositorioPokemon.ModificacionNombrePokemon(ModificacionAPokemon.Id, pokemon.Nombre);
-            }          
+            repositorioDirectorioTipos.EliminarRelacionTipos(modificacionAPokemon.Id);
+            repositorioDirectorioTipos.GuardarRelacion(directorioTipos.IdsTipo, modificacionAPokemon.Id);
 
-            repositorioDirectorioTipos.EliminarRelacionTipos(ModificacionAPokemon.Id);
-            repositorioDirectorioTipos.GuardarRelacion(directorioTipos.IdsTipo, ModificacionAPokemon.Id);
-
-            repositorioDirectorioMovimientos.EliminarRelacionMovimientos(ModificacionAPokemon.Id);
-            repositorioDirectorioMovimientos.GuardarRelacion(directorioMovimiento.IdsMovimiento,ModificacionAPokemon.Id);
+            repositorioDirectorioMovimientos.EliminarRelacionMovimientos(modificacionAPokemon.Id);
+            repositorioDirectorioMovimientos.GuardarRelacion(directorioMovimiento.IdsMovimiento,modificacionAPokemon.Id);
 
         }
 

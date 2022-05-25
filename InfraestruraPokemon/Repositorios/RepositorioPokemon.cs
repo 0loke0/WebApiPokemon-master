@@ -24,12 +24,14 @@ namespace InfraestructuraPokemon.Repositorios
         int GuardarPokemon(Pokemon nuevoPokemon, DTOIngresoImagen imagenes, string rutaGuardadoImagen);
         void EliminarPokemon(int idPokemon);
         void ActualizarPokemon(DTOPokemon pokemon);
-        int ObtenerCantidadPokemones();
-        void ModificacionNombrePokemon(int id, string nombre);
+        int ObtenerCantidadPokemones();        
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion);
-        int BuscarCantidadMismoNombre(string nombrePokemon);
+        int BuscarCantidadMismoNombre(string nombrePokemon,int?  id);
         int ObtenerCantidadPokemonesFiltrados(DTOFiltros Filtros );
+        void ModificarPokemon(int id, Pokemon dominioPokemon);
+
+
     }
     public class RepositorioPokemon : IRepositorioPokemon
     {
@@ -309,25 +311,34 @@ namespace InfraestructuraPokemon.Repositorios
         }
 
 
-        public void ModificacionNombrePokemon(int id, string nombre)
+      
+        public int BuscarCantidadMismoNombre(string nombrePokemon,int? id)
         {
-            var pokemon = (from x in contextoPokemon.Pokemones
-                           where x.IdPokemon == id
-                           select x).FirstOrDefault();
+            nombrePokemon = nombrePokemon.Trim();
+        
+            var query = contextoPokemon.Pokemones.Where(pokemon => pokemon.Nombre.Equals(nombrePokemon));
+            if (id.HasValue) 
+            {
+                int idPokemon = id.GetValueOrDefault();
+                query = query.Where(pokemon => !pokemon.IdPokemon.Equals(idPokemon)); 
+            }
+
+            return query.Count();
+
+        }
+        public void ModificarPokemon(int id, Pokemon dominioPokemon)
+        {
+            var pokemon = contextoPokemon.Pokemones.Where(poke => poke.IdPokemon == id).FirstOrDefault();
+
             if (pokemon == null)
             {
-                throw new Exception($"No se encontró información del pokémon que se desea modificar ");
+                throw new Exception($"No se encontró información del pokémon al cual se desea modificar");
             }
-            pokemon.Nombre = nombre;
+            pokemon.Nombre = dominioPokemon.Nombre;
+            pokemon.Detalle = dominioPokemon.Detalle;
             contextoPokemon.SaveChanges();
         }
 
-        public int BuscarCantidadMismoNombre(string nombrePokemon)
-        {
-           return contextoPokemon.Pokemones.Where(pokemon => pokemon.Nombre.Equals(nombrePokemon)).Count();           
-             
-        }
 
-        
     }
 }

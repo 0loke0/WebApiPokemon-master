@@ -7,9 +7,6 @@ using DTOsPokemon.DTOS;
 
 namespace DominioPokemon
 {
-
-
-
     public class Pokemon
     {
         public string Nombre { get; set; }
@@ -85,9 +82,6 @@ namespace DominioPokemon
                 return;
             }
 
-
-
-
         }
 
         private void Validar()
@@ -106,9 +100,6 @@ namespace DominioPokemon
             }
 
         }
-
-
-
 
     }
 }
