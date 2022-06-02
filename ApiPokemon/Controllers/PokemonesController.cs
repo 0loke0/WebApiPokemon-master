@@ -23,12 +23,7 @@ namespace ApiPokemon.Controllers
         }
 
 
-        
-        [HttpPost]
-        public IHttpActionResult ObtenerPokemonesSP(DTOPaginacion paginacion)
-        {
-            return Ok(servicioPokemon.ListarPokemonesSP(paginacion));
-        }
+    
 
         [HttpPost]
         public IHttpActionResult GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon)

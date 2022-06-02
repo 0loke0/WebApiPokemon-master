@@ -182,5 +182,6 @@ namespace DTOsPokemon.DTOS
         public int DefensaEspecialMaxima { get; set; }
         public int VelocidadMinima { get; set; }
         public int VelocidadMaxima { get; set; }
+        public string Rareza { get; set; }
       }
     }

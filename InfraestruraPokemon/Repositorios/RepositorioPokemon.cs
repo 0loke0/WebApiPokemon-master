@@ -226,8 +226,9 @@ namespace InfraestructuraPokemon.Repositorios
                 DefensaEspecialMinima =paginacion.Filtros.AtaqueEspecialMinimo,   
                 DefensaEspecialMaxima =paginacion.Filtros.AtaqueEspecialMaximo,    
                 VelocidadMinima = paginacion.Filtros.VelocidadMinima,    
-                VelocidadMaxima = paginacion.Filtros.VelocidadMaxima,             
-               
+                VelocidadMaxima = paginacion.Filtros.VelocidadMaxima,
+                Rareza = paginacion.Filtros.Rareza,
+
             };
             var procedure = "[GetSeccionPokemonesConFiltros]";
 
@@ -298,6 +299,7 @@ namespace InfraestructuraPokemon.Repositorios
                 DefensaEspecialMaxima = Filtros.AtaqueEspecialMaximo,
                 VelocidadMinima = Filtros.VelocidadMinima,
                 VelocidadMaxima = Filtros.VelocidadMaxima,
+                Rareza = Filtros.Rareza,
             };
             var procedure = "[GetCantidadPokemonesFiltrados]";
 
