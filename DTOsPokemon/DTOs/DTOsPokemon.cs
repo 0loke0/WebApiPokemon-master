@@ -16,10 +16,10 @@ namespace DTOsPokemon.DTOS
         public string NombreTipo { get; set; }
     }
 
-    
-        public class DTOPokemon
+
+    public class DTOPokemon
     {
-        
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Ataque { get; set; }
@@ -63,7 +63,7 @@ namespace DTOsPokemon.DTOS
         public int IdPokemon { get; set; }
         public int IdTipo { get; set; }
     }
-    
+
     public class DTOMovimiento
     {
         //todo: quitar IdTemporalPokemon cuando la consulta en el repositorio pokemon por sp ya este terminada
@@ -84,7 +84,7 @@ namespace DTOsPokemon.DTOS
         public string NombrePokemon { get; set; }
         public List<int> IdsTipo { get; set; }        //lista para el directorio
         public List<int> IdsMovimiento { get; set; }
-        public DTOIngresoImagen Imagen { get; set; }  
+        public DTOIngresoImagen Imagen { get; set; }
         public string Detalle { get; set; }
 
     }
@@ -93,7 +93,7 @@ namespace DTOsPokemon.DTOS
     {
         public int Id { get; set; }
         public string NombrePokemon { get; set; }
-        public List<int> IdsTipo { get; set; }        
+        public List<int> IdsTipo { get; set; }
         public List<int> IdsMovimiento { get; set; }
         public string Detalle { get; set; }
 
@@ -101,7 +101,8 @@ namespace DTOsPokemon.DTOS
 
 
 
-    public class DTODetallePokemon {
+    public class DTODetallePokemon
+    {
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Ataque { get; set; }
@@ -110,7 +111,7 @@ namespace DTOsPokemon.DTOS
         public int EspecialDefensa { get; set; }
         public int Velocidad { get; set; }
         public int Vida { get; set; }
-        public string NombreImagen { get; set; }      
+        public string NombreImagen { get; set; }
         public string RutaImagen { get; set; }
         public string Rareza { get; set; }
         public List<DTOMovimiento> Movimientos { get; set; }
@@ -131,7 +132,7 @@ namespace DTOsPokemon.DTOS
         public int Vida { get; set; }
         public string NombreImagen { get; set; }
         public string RutaImagen { get; set; }
-        public string Rareza { get; set; }       
+        public string Rareza { get; set; }
         public string Detalle { get; set; }
 
     }
@@ -140,7 +141,7 @@ namespace DTOsPokemon.DTOS
     {
         public int IdPokemon { get; set; }
         public string Movimientos { get; set; }
-      
+
     }
 
     public class DTOTipoSP
@@ -150,17 +151,19 @@ namespace DTOsPokemon.DTOS
     }
 
 
-    public class DTOFormularioConsulta { 
-    public DTOPaginacion Paginacion { get; set; }
-    public DTOFiltros Filtros { get; set; }
+    public class DTOFormularioConsulta
+    {
+        public DTOPaginacion Paginacion { get; set; }
+        public DTOFiltros Filtros { get; set; }
 
     }
 
 
-    public class DTOPaginacion {
+    public class DTOPaginacion
+    {
         public int Indice { get; set; }
         public int CantidadRegistros { get; set; }
-       
+
     }
 
 
@@ -168,7 +171,7 @@ namespace DTOsPokemon.DTOS
     {
         public int Indice { get; set; }
         public int CantidadRegistros { get; set; }
-        public int? Identificador { get; set; }
+        public int Identificador { get; set; }
         public string Nombre { get; set; }
         public int AtaqueMinimo { get; set; }
         public int AtaqueMaximo { get; set; }
@@ -183,5 +186,28 @@ namespace DTOsPokemon.DTOS
         public int VelocidadMinima { get; set; }
         public int VelocidadMaxima { get; set; }
         public string Rareza { get; set; }
-      }
+        public int Tipo { get; set; }
     }
+
+
+    public class DTOVariablesSpFiltros
+    {
+        public int? UbicacionPagina { get; set; }
+        public int CantidadRegistros { get; set; }
+        public int Identificador { get; set; }
+        public string Nombre { get; set; }
+        public int AtaqueMinimo { get; set; }
+        public int AtaqueMaximo { get; set; }
+        public int AtaqueEspecialMinimo { get; set; }
+        public int AtaqueEspecialMaximo { get; set; }
+        public int VidaMinima { get; set; }
+        public int VidaMaxima { get; set; }
+        public int DefensaMinima { get; set; }
+        public int DefensaMaxima { get; set; }
+        public int DefensaEspecialMinima { get; set; }
+        public int DefensaEspecialMaxima { get; set; }
+        public int VelocidadMinima { get; set; }
+        public int VelocidadMaxima { get; set; }
+        public string Rareza { get; set; }
+    }
+}

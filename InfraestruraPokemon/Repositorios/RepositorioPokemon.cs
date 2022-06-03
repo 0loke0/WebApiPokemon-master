@@ -64,8 +64,7 @@ namespace InfraestructuraPokemon.Repositorios
           Detalle = pokemon.Detalle
       };
 
-
-
+         
 
         public IEnumerable<DTOPokemon> BuscarPokemones(string nombrePokemon)
         {
@@ -228,7 +227,7 @@ namespace InfraestructuraPokemon.Repositorios
                 VelocidadMinima = paginacion.Filtros.VelocidadMinima,    
                 VelocidadMaxima = paginacion.Filtros.VelocidadMaxima,
                 Rareza = paginacion.Filtros.Rareza,
-
+                Tipo = paginacion.Filtros.Tipo
             };
             var procedure = "[GetSeccionPokemonesConFiltros]";
 
@@ -300,7 +299,9 @@ namespace InfraestructuraPokemon.Repositorios
                 VelocidadMinima = Filtros.VelocidadMinima,
                 VelocidadMaxima = Filtros.VelocidadMaxima,
                 Rareza = Filtros.Rareza,
+                Tipo = Filtros.Tipo
             };
+
             var procedure = "[GetCantidadPokemonesFiltrados]";
 
             //pendiente dejarlo como singular no multiple
