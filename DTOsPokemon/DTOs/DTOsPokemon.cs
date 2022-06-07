@@ -100,6 +100,11 @@ namespace DTOsPokemon.DTOS
     }
 
 
+    public class DTORespuestaConsultaSeccionPokemon
+    {
+       public int ConteoPokemones { get; set; }
+       public IEnumerable<DTODetallePokemon>  DetallePokemon { get; set; }
+    }
 
     public class DTODetallePokemon
     {
@@ -153,6 +158,7 @@ namespace DTOsPokemon.DTOS
 
     public class DTOFormularioConsulta
     {
+
         public DTOPaginacion Paginacion { get; set; }
         public DTOFiltros Filtros { get; set; }
 
@@ -169,8 +175,7 @@ namespace DTOsPokemon.DTOS
 
     public class DTOFiltros
     {
-        public int Indice { get; set; }
-        public int CantidadRegistros { get; set; }
+      
         public int Identificador { get; set; }
         public string Nombre { get; set; }
         public int AtaqueMinimo { get; set; }

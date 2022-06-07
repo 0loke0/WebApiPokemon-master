@@ -26,7 +26,7 @@ namespace InfraestructuraPokemon.Repositorios
         void ActualizarPokemon(DTOPokemon pokemon);
         int ObtenerCantidadPokemones();        
         IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSp(DTOPaginacion paginacion);
-        IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion);
+        DTORespuestaConsultaSeccionPokemon RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion);
         int BuscarCantidadMismoNombre(string nombrePokemon,int?  id);
         int ObtenerCantidadPokemonesFiltrados(DTOFiltros Filtros );
         void ModificarPokemon(int id, Pokemon dominioPokemon);
@@ -203,7 +203,7 @@ namespace InfraestructuraPokemon.Repositorios
              
         }
 
-        public IEnumerable<DTODetallePokemon> RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion)
+        public DTORespuestaConsultaSeccionPokemon RecogerPokemonDesdeSpConFiltros(DTOFormularioConsulta paginacion)
         {
             int ubicacionPagina = paginacion.Paginacion.Indice * paginacion.Paginacion.CantidadRegistros;
             string conn = contextoPokemon.Database.Connection.ConnectionString;
@@ -232,43 +232,47 @@ namespace InfraestructuraPokemon.Repositorios
             var procedure = "[GetSeccionPokemonesConFiltros]";
 
             var multi = connection.QueryMultiple(procedure, values, commandType: CommandType.StoredProcedure);
-
+            
+            var conteo = multi.Read<int>().FirstOrDefault();
             var pokemon = multi.Read<DTOPokemon>().ToList();
             var movimiento = multi.Read<DTOMovimiento>().ToList();
             var tipo = multi.Read<DTOTipo>().ToList();
 
+            return new DTORespuestaConsultaSeccionPokemon {
+                ConteoPokemones = conteo,
+                DetallePokemon = from x in pokemon
+                                 select new DTODetallePokemon
+                                 {
+                                     Id = x.Id,
+                                     Nombre = x.Nombre,
+                                     Ataque = x.Ataque,
+                                     Defensa = x.Defensa,
+                                     EspecialAtaque = x.EspecialAtaque,
+                                     EspecialDefensa = x.EspecialDefensa,
+                                     Velocidad = x.Velocidad,
+                                     Vida = x.Vida,
+                                     NombreImagen = x.NombreImagen,
+                                     RutaImagen = x.RutaImagen,
+                                     Rareza = x.Rareza,
+                                     Detalle = x.Detalle,
+                                     Movimientos = movimiento.Where(m => m.IdTemporalPokemon == x.Id)
+                                     .Select(sm => new DTOMovimiento
+                                     {
+                                         IdTemporalPokemon = sm.IdTemporalPokemon,
+                                         IdMovimiento = sm.IdMovimiento,
+                                         NombreMovimiento = sm.NombreMovimiento,
+                                         Valor = sm.Valor,
+                                     }).ToList(),
+                                     Tipos = tipo.Where(t => t.IdTemporalPokemon == x.Id)
+                                     .Select(st => new DTOTipo
+                                     {
+                                         IdTemporalPokemon = st.IdTemporalPokemon,
+                                         NombreTipo = st.NombreTipo,
+                                         IdTipo = st.IdTipo
+                                     }).ToList(),
+                                 }
 
-            return from x in pokemon 
-                   select new DTODetallePokemon
-                   {
-                       Id = x.Id,
-                       Nombre = x.Nombre,
-                       Ataque = x.Ataque,
-                       Defensa = x.Defensa,
-                       EspecialAtaque = x.EspecialAtaque,
-                       EspecialDefensa = x.EspecialDefensa,
-                       Velocidad = x.Velocidad,
-                       Vida = x.Vida,
-                       NombreImagen = x.NombreImagen,
-                       RutaImagen = x.RutaImagen,
-                       Rareza = x.Rareza,
-                       Detalle = x.Detalle,
-                       Movimientos = movimiento.Where(m => m.IdTemporalPokemon == x.Id)
-                       .Select(sm => new DTOMovimiento
-                       {
-                           IdTemporalPokemon = sm.IdTemporalPokemon,
-                           IdMovimiento = sm.IdMovimiento,
-                           NombreMovimiento = sm.NombreMovimiento,
-                           Valor = sm.Valor,
-                       }).ToList(),
-                       Tipos = tipo.Where(t => t.IdTemporalPokemon == x.Id)
-                       .Select(st => new DTOTipo
-                       {
-                           IdTemporalPokemon = st.IdTemporalPokemon,
-                           NombreTipo = st.NombreTipo,
-                           IdTipo = st.IdTipo
-                       }).ToList(),
-                   };
+            };        
 
         }
         public int ObtenerCantidadPokemones( )
