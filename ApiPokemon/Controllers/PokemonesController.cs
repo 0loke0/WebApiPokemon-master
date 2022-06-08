@@ -12,9 +12,7 @@ namespace ApiPokemon.Controllers
         public PokemonesController(IServicioPokemon servicioPokemon)
         {
             this.servicioPokemon = servicioPokemon;
-        }
-
-        
+        }        
 
         [HttpPost]
         public DTORespuestaConsultaSeccionPokemon ObtenerPokemonesConFiltros(DTOFormularioConsulta paginacion)
@@ -38,20 +36,7 @@ namespace ApiPokemon.Controllers
             servicioPokemon.EliminarPokemon(idPokemon);
             return Ok($"Se Eliminio de forma correcta el pokemon con el identificador: {idPokemon}");
         }
-
-        [HttpGet]
-        public IHttpActionResult ObtenerCantidadRegistrosPokemon() { 
-        return Ok( servicioPokemon.ObtenerCantidadPokemones());
-        }
-
-        [HttpPost]
-        public IHttpActionResult ObtenerCantidadPokemonFiltrados(DTOFiltros Filtros)
-        {
-            return Ok(servicioPokemon.ObtenerCantidadPokemonesFiltrado(Filtros));
-        }
-
-
-
+        
         [HttpPost]
         public IHttpActionResult ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon)
         {            

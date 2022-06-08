@@ -14,15 +14,13 @@ using Utilidades.Utilidades;
 namespace ServiciosPokemon
 {
     public interface IServicioPokemon
-    {
-        
-        IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion);
+    {       
+       
         DTORespuestaConsultaSeccionPokemon ListarPokemonesConFiltros(DTOFormularioConsulta paginacion);
         void GuardarNuevoPokemon(DTONuevoPokemon nuevoPokemon);
         void ModificarPokemon(DTOModificacionAPokemon ModificacionAPokemon);
         void EliminarPokemon(int idPokemon);
-        int ObtenerCantidadPokemones();
-        int ObtenerCantidadPokemonesFiltrado(DTOFiltros Filtros);
+      
 
     }
     public class ServicioPokemon : IServicioPokemon
@@ -73,10 +71,7 @@ namespace ServiciosPokemon
 
        
 
-        public IEnumerable<DTODetallePokemon> ListarPokemonesSP(DTOPaginacion paginacion)
-        {
-            return repositorioPokemon.RecogerPokemonDesdeSp(paginacion);
-        }
+     
 
          public DTORespuestaConsultaSeccionPokemon ListarPokemonesConFiltros(DTOFormularioConsulta paginacion)
         {
@@ -107,19 +102,7 @@ namespace ServiciosPokemon
             repositorioPokemon.EliminarPokemon(idPokemon);
         }
 
-        public int ObtenerCantidadPokemones()
-        {
-            return repositorioPokemon.ObtenerCantidadPokemones();
-        }
-
-        public int ObtenerCantidadPokemonesFiltrado(DTOFiltros Filtros)
-        {
-            return repositorioPokemon.ObtenerCantidadPokemonesFiltrados(Filtros);
-        }
-
-
-
-
+     
         public void ModificarPokemon(DTOModificacionAPokemon modificacionAPokemon)
         {
 
