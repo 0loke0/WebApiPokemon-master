@@ -88,7 +88,7 @@ namespace ServiciosPokemon
             DominioImagenes imagenes = new DominioImagenes(nuevoPokemon.Imagen.Nombre, nuevoPokemon.Imagen.ArchivoImagen);
 
             //convercion y guardado de imagen
-            byte[] imagenConvertida = UtilidadesImagenes.ConvertirDeBase64Aimagen(nuevoPokemon.Imagen.ArchivoImagen);
+            byte[] imagenConvertida = UtilidadesImagenes.ConvertirDeBase64ABytes(nuevoPokemon.Imagen.ArchivoImagen);
             string rutaGuardadoImagen = GuardarImagenEnLocal(imagenConvertida, nuevoPokemon.Imagen.Nombre);
 
             var idPokemonGuardado = repositorioPokemon.GuardarPokemon(pokemon, nuevoPokemon.Imagen, rutaGuardadoImagen);
