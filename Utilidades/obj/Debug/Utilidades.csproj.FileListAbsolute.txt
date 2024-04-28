@@ -19,3 +19,9 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\Utilidades
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.csprojResolveAssemblyReference.cache
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.dll
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.pdb
+C:\Users\user\Documents\WebApiPokemon-master\Utilidades\bin\Debug\Utilidades.dll
+C:\Users\user\Documents\WebApiPokemon-master\Utilidades\bin\Debug\Utilidades.pdb
+C:\Users\user\Documents\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.csproj.AssemblyReference.cache
+C:\Users\user\Documents\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.dll
+C:\Users\user\Documents\WebApiPokemon-master\Utilidades\obj\Debug\Utilidades.pdb

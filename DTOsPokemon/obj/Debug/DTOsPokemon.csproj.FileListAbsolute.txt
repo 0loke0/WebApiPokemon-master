@@ -28,3 +28,12 @@ C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemo
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.dll
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.pdb
 C:\Users\jeison.fernandez.SINCO\Documents\GitHub\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\bin\Debug\DTOsPokemon.dll
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\bin\Debug\DTOsPokemon.pdb
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\bin\Debug\Newtonsoft.Json.xml
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.AssemblyReference.cache
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.csproj.CopyComplete
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.dll
+C:\Users\user\Documents\WebApiPokemon-master\DTOsPokemon\obj\Debug\DTOsPokemon.pdb

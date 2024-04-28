@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InfraestructuraPokemon;
-using InfraestruraPokemon;
 using DTOsPokemon.DTOS;
 using InfraestructuraPokemon.Modelos;
 using DominioPokemon;
@@ -97,24 +92,24 @@ namespace InfraestructuraPokemon.Repositorios
             var values = new {
                 UbicacionPagina = ubicacionPagina,
                 CantidadRegistros = paginacion.Paginacion.CantidadRegistros,
-                Identificador = paginacion.Filtros.Identificador,
-                Nombre = paginacion.Filtros.Nombre,
-                AtaqueMinimo = paginacion.Filtros.AtaqueMinimo,
-                AtaqueMaximo = paginacion.Filtros.AtaqueMaximo,
-                AtaqueEspecialMinimo = paginacion.Filtros.AtaqueEspecialMinimo,    
-                AtaqueEspecialMaximo = paginacion.Filtros.AtaqueEspecialMaximo,     
-                VidaMinima = paginacion.Filtros.VidaMinima,    
-                VidaMaxima = paginacion.Filtros.VidaMaxima,    
-                DefensaMinima =paginacion.Filtros.DefensaMinima,    
-                DefensaMaxima = paginacion.Filtros.DefensaMaxima,    
-                DefensaEspecialMinima =paginacion.Filtros.AtaqueEspecialMinimo,   
-                DefensaEspecialMaxima =paginacion.Filtros.AtaqueEspecialMaximo,    
-                VelocidadMinima = paginacion.Filtros.VelocidadMinima,    
-                VelocidadMaxima = paginacion.Filtros.VelocidadMaxima,
-                Rareza = paginacion.Filtros.Rareza,
-                Tipo = paginacion.Filtros.Tipo
+                //Identificador = paginacion.Filtros.Identificador,
+                //Nombre = paginacion.Filtros.Nombre,
+                //AtaqueMinimo = paginacion.Filtros.AtaqueMinimo,
+                //AtaqueMaximo = paginacion.Filtros.AtaqueMaximo,
+                //AtaqueEspecialMinimo = paginacion.Filtros.AtaqueEspecialMinimo,    
+                //AtaqueEspecialMaximo = paginacion.Filtros.AtaqueEspecialMaximo,     
+                //VidaMinima = paginacion.Filtros.VidaMinima,    
+                //VidaMaxima = paginacion.Filtros.VidaMaxima,    
+                //DefensaMinima =paginacion.Filtros.DefensaMinima,    
+                //DefensaMaxima = paginacion.Filtros.DefensaMaxima,    
+                //DefensaEspecialMinima =paginacion.Filtros.AtaqueEspecialMinimo,   
+                //DefensaEspecialMaxima =paginacion.Filtros.AtaqueEspecialMaximo,    
+                //VelocidadMinima = paginacion.Filtros.VelocidadMinima,    
+                //VelocidadMaxima = paginacion.Filtros.VelocidadMaxima,
+                //Rareza = paginacion.Filtros.Rareza,
+                //Tipo = paginacion.Filtros.Tipo
             };
-            var procedure = "[GetSeccionPokemonesConFiltros]";
+            var procedure = "[GetSeccionPokemones]";
 
             var multi = connection.QueryMultiple(procedure, values, commandType: CommandType.StoredProcedure);
             
